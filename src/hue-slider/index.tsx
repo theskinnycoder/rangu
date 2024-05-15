@@ -17,7 +17,7 @@ const RanguHueSlider = React.forwardRef<HTMLDivElement, RanguHueSliderProps>(
 				{...rest}
 				channel="hue"
 				orientation="horizontal"
-				className={cn("max-w-[300px]", className)}
+				className={cn("max-w-[300px]", "cursor-ew-resize", className)}
 				ref={forwardedRef}
 			>
 				{/* Track */}
