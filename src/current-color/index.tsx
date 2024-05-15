@@ -12,7 +12,11 @@ const RanguCurrentColor = React.forwardRef<
 		<ColorSwatch
 			{...rest}
 			ref={forwardedRef}
-			className={cn("size-14 rounded-lg drop-shadow-sm", className)}
+			className={cn(
+				"size-14 rounded-lg shadow-sm",
+				"transition-colors duration-300 ease-in-out",
+				className,
+			)}
 		/>
 	);
 });
