@@ -19,7 +19,7 @@ const RanguAlphaSlider = React.forwardRef<
 			{...rest}
 			channel="alpha"
 			orientation="horizontal"
-			className={cn("max-w-[300px]", className)}
+			className={cn("max-w-[300px]", "cursor-ew-resize", className)}
 			ref={forwardedRef}
 		>
 			{/* Track */}
