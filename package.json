@@ -1,10 +1,10 @@
 {
 	"name": "rangu",
-	"version": "0.0.1",
+	"version": "0.0.0",
 	"description": "A color picker for React",
-	"private": false,
+	"private": true,
 	"publishConfig": {
-		"access": "public"
+		"access": "restricted"
 	},
 	"engines": {
 		"pnpm": ">=8",
@@ -49,13 +49,17 @@
 		"./package.json": "./package.json"
 	},
 	"scripts": {
-		"dev": "tsup --watch",
-		"build": "tsup --minify",
+		"dev:tsup": "tsup --watch",
+		"build:tsup": "tsup --minify",
 		"lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
 		"lint:fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --max-warnings 0 --fix",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
-		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build"
+		"dev:storybook": "storybook dev -p 6006",
+		"build:storybook": "storybook build",
+		"dev": "pnpm dev:tsup & pnpm dev:storybook",
+		"build": "pnpm build:tsup && pnpm build:storybook",
+		"prerelease": "pnpm build:tsup",
+		"release": "changeset publish"
 	},
 	"dependencies": {
 		"react-aria-components": "^1.2.0"
@@ -73,6 +77,8 @@
 		}
 	},
 	"devDependencies": {
+		"@changesets/changelog-github": "^0.5.0",
+		"@changesets/cli": "^2.27.1",
 		"@chromatic-com/storybook": "^1.4.0",
 		"@storybook/addon-essentials": "^8.1.1",
 		"@storybook/addon-interactions": "^8.1.1",
