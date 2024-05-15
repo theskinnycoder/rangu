@@ -1,0 +1,45 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "TSConfig for a React Library",
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"target": "ESNext",
+		"verbatimModuleSyntax": true,
+		"allowJs": false,
+		"resolveJsonModule": true,
+		"moduleDetection": "force",
+
+		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": true,
+
+		"moduleResolution": "Bundler",
+		"module": "ESNext",
+		"noEmit": true,
+		"allowImportingTsExtensions": true,
+		"incremental": true,
+		"tsBuildInfoFile": "tsconfig.tsbuildinfo",
+
+		"lib": ["ESNext", "DOM", "DOM.Iterable"],
+
+		"jsx": "react-jsx",
+		"declaration": true,
+		"declarationMap": true,
+		"composite": false,
+
+		"baseUrl": "./",
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "dist", "tailwind.config.ts", "*.stories.tsx"],
+	"buildOptions": {
+		"incremental": true
+	}
+}
