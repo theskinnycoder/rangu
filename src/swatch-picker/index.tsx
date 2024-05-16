@@ -33,7 +33,7 @@ const RanguSwatchPicker = React.forwardRef<
 			{...rest}
 			ref={forwardedRef}
 			className={cn(
-				"flex h-14 max-w-44 flex-wrap items-stretch justify-stretch gap-1",
+				"flex h-14 max-w-36 flex-wrap items-center justify-center gap-x-1 gap-y-1",
 				className,
 			)}
 		>
@@ -42,8 +42,8 @@ const RanguSwatchPicker = React.forwardRef<
 					key={`${color.toString("rgba")}`}
 					color={color}
 					className={cn(
-						"size-[1.625rem] shrink-0 rounded-md border-none shadow-sm outline-none ring-0",
-						"data-[pressed=true]:scale-95",
+						"size-5 shrink-0 rounded-[4px] border-none shadow-sm outline-none ring-0",
+						"data-[pressed=true]:scale-90",
 						"transition-all duration-300 ease-in-out",
 					)}
 					style={{

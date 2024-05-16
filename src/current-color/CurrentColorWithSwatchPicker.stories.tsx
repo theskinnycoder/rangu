@@ -7,7 +7,13 @@ const ExampleSwatchPickerWithCurrentColor = () => {
 	const [selectedColor, setSelectedColor] = useState(parseColor("#ff00ff"));
 
 	return (
-		<div className="flex items-center gap-3">
+		<div
+			style={{
+				display: "flex",
+				gap: "1rem",
+				alignItems: "center",
+			}}
+		>
 			<RanguCurrentColor color={selectedColor} />
 
 			<RanguSwatchPicker
