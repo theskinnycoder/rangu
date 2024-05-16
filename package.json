@@ -50,15 +50,15 @@
 	},
 	"scripts": {
 		"dev:tsup": "tsup --watch",
-		"build:tsup": "tsup --minify",
+		"dev:storybook": "storybook dev -p 6006",
+		"dev": "pnpm dev:tsup & pnpm dev:storybook",
+		"build": "tsup --minify",
+		"build:storybook": "storybook build",
+		"build:all": "pnpm build & pnpm build:storybook",
 		"lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
 		"lint:fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --max-warnings 0 --fix",
 		"format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
-		"dev:storybook": "storybook dev -p 6006",
-		"build:storybook": "storybook build",
-		"dev": "pnpm dev:tsup & pnpm dev:storybook",
-		"build": "pnpm build:tsup && pnpm build:storybook",
-		"prerelease": "pnpm build:tsup",
+		"prerelease": "pnpm build",
 		"release": "changeset publish"
 	},
 	"dependencies": {
