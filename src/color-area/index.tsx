@@ -1,3 +1,4 @@
+import { useRangu } from "@/hooks/use-rangu";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
@@ -7,18 +8,34 @@ import {
 } from "react-aria-components";
 
 interface RanguColorAreaProps
-	extends Omit<ColorAreaProps, "xChannel" | "yChannel" | "colorSpace"> {}
+	extends Omit<
+		ColorAreaProps,
+		| "xChannel"
+		| "yChannel"
+		| "xName"
+		| "yName"
+		| "colorSpace"
+		| "value"
+		| "defaultValue"
+		| "onChange"
+		| "onChangeEnd"
+		| "slot"
+	> {}
 
 const RanguColorArea = React.forwardRef<HTMLDivElement, RanguColorAreaProps>(
-	(props, ref) => {
+	({ className, ...rest }, forwardedRed) => {
+		const { value, onChange } = useRangu();
+
 		return (
 			<ColorArea
-				{...props}
+				{...rest}
 				colorSpace="hsb"
 				xChannel="saturation"
 				yChannel="brightness"
-				ref={ref}
-				className={cn("relative size-52 shrink-0 rounded-lg")}
+				value={value}
+				onChange={onChange}
+				ref={forwardedRed}
+				className={cn("relative size-52 shrink-0 rounded-lg", className)}
 			>
 				<ColorThumb
 					className={cn(

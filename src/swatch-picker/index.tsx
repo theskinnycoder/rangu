@@ -1,32 +1,41 @@
+import { useRangu } from "@/hooks/use-rangu";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
 	ColorSwatch,
 	ColorSwatchPicker,
 	ColorSwatchPickerItem,
-	type Color,
+	parseColor,
 	type ColorSwatchPickerProps,
 } from "react-aria-components";
 
-interface RanguSwatchPickerProps extends ColorSwatchPickerProps {
-	colors: Array<string | Color>;
+interface RanguSwatchPickerProps
+	extends Omit<
+		ColorSwatchPickerProps,
+		"value" | "defaultValue" | "onChange" | "layout" | "children"
+	> {
+	colors: Array<string>;
 }
 
 const RanguSwatchPicker = React.forwardRef<
 	HTMLDivElement,
 	RanguSwatchPickerProps
 >(({ className, colors, ...rest }, forwardedRef) => {
-	if (colors.length === 0) {
-		throw new Error("RanguSwatchPicker: colors prop must not be empty");
+	const { outputFormat } = useRangu();
+
+	if (!colors || colors.length === 0) {
+		throw new Error("Rangu.SwatchPicker: `colors` prop must not be empty");
 	}
 
-	if (colors.length > 11) {
+	if (colors.length > 12) {
 		throw new Error(
-			"RanguSwatchPicker: colors prop must not have more than 11 colors",
+			"Rangu.SwatchPicker: `colors` prop must not have more than 12 colors",
 		);
 	}
 
-	const allColors = [...colors, "rgba(0, 0, 0, 0)"];
+	const transformedColors = colors.map((color) =>
+		parseColor(color).toFormat(outputFormat),
+	);
 
 	return (
 		<ColorSwatchPicker
@@ -37,17 +46,17 @@ const RanguSwatchPicker = React.forwardRef<
 				className,
 			)}
 		>
-			{allColors.map((color) => (
+			{transformedColors.map((color) => (
 				<ColorSwatchPickerItem
-					key={`${color.toString("rgba")}`}
+					key={color.toString(outputFormat)}
 					color={color}
 					className={cn(
-						"size-5 shrink-0 rounded-[4px] border-none shadow-sm outline-none ring-0",
+						"size-5 shrink-0 rounded-[4px] border-none shadow-sm shadow-slate-200 outline-none ring-0",
 						"data-[pressed=true]:scale-90",
 						"transition-all duration-300 ease-in-out",
 					)}
 					style={{
-						backgroundColor: color.toString("rgba"),
+						backgroundColor: color.toString(outputFormat),
 					}}
 				>
 					<ColorSwatch />
