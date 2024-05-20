@@ -39,11 +39,12 @@ const RanguColorArea = React.forwardRef<HTMLDivElement, RanguColorAreaProps>(
 			>
 				<ColorThumb
 					className={cn(
-						"size-5 rounded-full focus-visible:size-6",
+						"size-5 rounded-full",
 						"data-[dragging=true]:size-6",
 						"duration-300 ease-in-out",
 						"shadow-2xl shadow-slate-800 dark:shadow-slate-100",
 						"ring-2 ring-slate-50 ring-offset-2 ring-offset-slate-950 dark:ring-slate-950 dark:ring-offset-slate-50",
+						"data-[focus-visible=true]:size-6 data-[focus-visible=true]:ring-blue-500",
 					)}
 					style={{
 						transitionProperty: "width, height",
