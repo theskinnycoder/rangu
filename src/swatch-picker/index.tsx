@@ -1,5 +1,5 @@
 import { useRangu } from "@/hooks/use-rangu";
-import { cn } from "@/utils";
+import { cn, getContrastColor } from "@/utils";
 import * as React from "react";
 import {
 	ColorSwatch,
@@ -51,12 +51,15 @@ const RanguSwatchPicker = React.forwardRef<
 					key={color.toString(outputFormat)}
 					color={color}
 					className={cn(
-						"size-5 shrink-0 rounded-[4px] border-none shadow-sm shadow-slate-200 outline-none ring-0",
+						"size-5 shrink-0 rounded-[4px] border-0 shadow-sm shadow-slate-200 outline-none ring-0",
 						"data-[pressed=true]:scale-90",
-						"transition-all duration-300 ease-in-out",
+						"focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-blue-500",
+						"data-[selected=true]:border-2 data-[selected=true]:outline-2 data-[selected=true]:outline-offset-1",
+						"transition-transform duration-300 ease-in-out",
 					)}
 					style={{
 						backgroundColor: color.toString(outputFormat),
+						borderColor: getContrastColor(color.toString(outputFormat)),
 					}}
 				>
 					<ColorSwatch />
