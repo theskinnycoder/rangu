@@ -18,6 +18,10 @@ const ExampleColorPicker = ({ color }: { color: string }) => {
 					alignItems: "center",
 					gap: "1.4rem",
 					padding: "1rem",
+					backgroundColor: "rgb(248, 250, 252)",
+					marginInline: "auto",
+					width: "fit-content",
+					borderRadius: "0.5rem",
 				}}
 			>
 				<Rangu.ColorArea />
@@ -48,6 +52,8 @@ const ExampleColorPicker = ({ color }: { color: string }) => {
 						]}
 					/>
 				</div>
+
+				<Rangu.InputFields withLabels />
 
 				<span>Final Color : {value}</span>
 			</div>
