@@ -37,7 +37,7 @@
 			"@/*": ["src/*"]
 		}
 	},
-	"include": ["src"],
+	"include": ["src", "index.d.ts"],
 	"exclude": ["node_modules", "dist", "tailwind.config.ts", "*.stories.tsx"],
 	"buildOptions": {
 		"incremental": true

@@ -2,7 +2,9 @@ import { RanguAlphaSlider } from "@/alpha-slider";
 import { RanguColorArea } from "@/color-area";
 import { type RanguContextProps } from "@/context";
 import { RanguCurrentColor } from "@/current-color";
+import { RanguEyeDropper } from "@/eye-dropper";
 import { RanguHueSlider } from "@/hue-slider";
+import { RanguInputFields } from "@/input-fields";
 import { RanguProvider } from "@/provider";
 import { RanguSwatchPicker } from "@/swatch-picker";
 import * as React from "react";
@@ -63,5 +65,7 @@ RanguColorPicker.HueSlider = RanguHueSlider;
 RanguColorPicker.CurrentColor = RanguCurrentColor;
 RanguColorPicker.SwatchPicker = RanguSwatchPicker;
 RanguColorPicker.ColorArea = RanguColorArea;
+RanguColorPicker.InputFields = RanguInputFields;
+RanguColorPicker.EyeDropper = RanguEyeDropper;
 
 export { RanguColorPicker as Rangu, type RanguColorPickerProps as RanguProps };
