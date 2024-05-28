@@ -10,4 +10,9 @@ export default defineConfig({
 	dts: true,
 	shims: true,
 	injectStyle: true,
+	treeshake: {
+		preset: "smallest",
+	},
+	minify: true,
+	skipNodeModulesBundle: true,
 });
