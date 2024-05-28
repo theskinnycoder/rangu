@@ -58,7 +58,7 @@ const RanguSwatchPicker = React.forwardRef<
 						"transition-transform duration-300 ease-in-out",
 					)}
 					style={{
-						backgroundColor: color.toString(outputFormat),
+						backgroundColor: color.toString("rgba"),
 						borderColor: getContrastColor(color.toString(outputFormat)),
 					}}
 				>
