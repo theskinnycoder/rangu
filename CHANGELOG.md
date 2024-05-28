@@ -4,8 +4,9 @@
 
 ### Patch Changes
 
-- [#10](https://github.com/theskinnycoder/rangu/pull/10) [`d183b8c`](https://github.com/theskinnycoder/rangu/commit/d183b8c437907a2916d2f09edd80756a1fc04e45) Thanks [@theskinnycoder](https://github.com/theskinnycoder)! - - fix swatch picker bg color
-  - fix unsupported formats bug
+- PR [#10](https://github.com/theskinnycoder/rangu/pull/10)
+- Fix Swatch Picker background color
+- Fix unsupported formats bug. Now `hex` and `hexa` formats are supported
 
 ## 1.0.0
 
