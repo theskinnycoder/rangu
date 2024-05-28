@@ -56,7 +56,13 @@ const ExampleColorPicker = ({ color }: { color: string }) => {
 				<Rangu.EyeDropper />
 				<Rangu.InputFields withLabels />
 
-				<span>Final Color : {value}</span>
+				<span
+					style={{
+						fontSize: "0.75rem",
+					}}
+				>
+					Final Color : {value}
+				</span>
 			</div>
 		</Rangu.Root>
 	);
