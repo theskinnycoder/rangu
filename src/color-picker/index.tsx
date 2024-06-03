@@ -28,11 +28,6 @@ const RanguColorPicker = (props: RanguColorPickerProps) => {
 
 	const [color, setColor] = React.useState(parseColor(value));
 
-	// For initial render
-	React.useEffect(() => {
-		onChange(parseColor(value).toString(outputFormat));
-	}, [onChange, outputFormat, value]);
-
 	const onChangeHandler = React.useCallback(
 		(value: Color) => {
 			setColor(value);
