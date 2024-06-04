@@ -3,9 +3,9 @@ import { cn } from "@/utils";
 import * as React from "react";
 import {
 	ColorField,
+	type ColorFieldProps,
 	Input,
 	Label,
-	type ColorFieldProps,
 } from "react-aria-components";
 
 interface RanguColorFieldProps extends ColorFieldProps {

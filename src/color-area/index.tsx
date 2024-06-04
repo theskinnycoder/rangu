@@ -3,8 +3,8 @@ import { cn } from "@/utils";
 import * as React from "react";
 import {
 	ColorArea,
-	ColorThumb,
 	type ColorAreaProps,
+	ColorThumb,
 } from "react-aria-components";
 
 interface RanguColorAreaProps

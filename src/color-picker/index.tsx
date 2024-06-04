@@ -9,10 +9,10 @@ import { RanguProvider } from "@/provider";
 import { RanguSwatchPicker } from "@/swatch-picker";
 import * as React from "react";
 import {
-	ColorPicker,
-	parseColor,
 	type Color,
+	ColorPicker,
 	type ColorPickerProps,
+	parseColor,
 } from "react-aria-components";
 
 interface RanguColorPickerProps

@@ -5,8 +5,8 @@ import {
 	ColorSwatch,
 	ColorSwatchPicker,
 	ColorSwatchPickerItem,
-	parseColor,
 	type ColorSwatchPickerProps,
+	parseColor,
 } from "react-aria-components";
 
 interface RanguSwatchPickerProps

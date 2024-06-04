@@ -11,7 +11,7 @@
 		"pnpm": ">=8",
 		"node": ">=20"
 	},
-	"packageManager": "^pnpm@8.12.1",
+	"packageManager": "pnpm@8.12.1",
 	"author": {
 		"name": "Rahul SriRam",
 		"email": "hi@rahulsriram.dev",
@@ -26,19 +26,11 @@
 	"bugs": {
 		"url": "https://github.com/theskinnycoder/rangu/issues"
 	},
-	"keywords": [
-		"react",
-		"colors",
-		"input",
-		"accessible",
-		"color-picker"
-	],
+	"keywords": ["react", "colors", "input", "accessible", "color-picker"],
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
 	"sideEffects": true,
-	"files": [
-		"dist"
-	],
+	"files": ["dist"],
 	"exports": {
 		".": {
 			"import": {
@@ -55,14 +47,17 @@
 		"build": "tsup --minify",
 		"build:storybook": "storybook build",
 		"build:all": "pnpm build & pnpm build:storybook",
-		"lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
-		"lint:fix": "eslint \"**/*.{js,jsx,ts,tsx}\" --max-warnings 0 --fix",
-		"format": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+		"lint": "pnpm biome lint ./src",
+		"lint:fix": "pnpm biome lint --write ./src",
+		"format": "pnpm biome format --write ./src",
+		"check": "pnpm biome check --changed ./src",
+		"check:staged": "pnpm biome check --staged ./src",
 		"prerelease": "pnpm build",
 		"release": "changeset publish"
 	},
 	"dependencies": {
-		"react-aria-components": "^1.2.1"
+		"react-aria-components": "^1.2.1",
+		"tailwind-merge": "^2.3.0"
 	},
 	"peerDependencies": {
 		"react": "^16.8 || ^17.0 || ^18.0",
@@ -77,6 +72,7 @@
 		}
 	},
 	"devDependencies": {
+		"@biomejs/biome": "1.8.0",
 		"@changesets/changelog-github": "^0.5.0",
 		"@changesets/cli": "^2.27.5",
 		"@chromatic-com/storybook": "^1.5.0",
@@ -91,26 +87,13 @@
 		"@types/node": "^20.14.1",
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
-		"@typescript-eslint/eslint-plugin": "^7.12.0",
-		"@typescript-eslint/parser": "^7.12.0",
 		"@vitejs/plugin-react-swc": "^3.7.0",
 		"autoprefixer": "^10.4.19",
 		"clsx": "^2.1.1",
-		"eslint": "^8.57.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-only-warn": "^1.1.0",
-		"eslint-plugin-prettier": "^5.1.3",
-		"eslint-plugin-react": "^7.34.2",
-		"eslint-plugin-react-hooks": "^4.6.2",
-		"eslint-plugin-react-refresh": "^0.4.7",
-		"eslint-plugin-storybook": "^0.8.0",
 		"postcss": "^8.4.38",
-		"prettier": "^3.3.0",
-		"prettier-plugin-tailwindcss": "^0.6.1",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"storybook": "^8.1.5",
-		"tailwind-merge": "^2.3.0",
 		"tailwindcss": "^3.4.3",
 		"tsup": "^8.1.0",
 		"typescript": "^5.4.5",

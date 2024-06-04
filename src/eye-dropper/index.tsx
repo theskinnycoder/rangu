@@ -1,6 +1,6 @@
 import { useRangu } from "@/hooks/use-rangu";
 import { cn } from "@/utils";
-import { Button, parseColor, type ButtonProps } from "react-aria-components";
+import { Button, type ButtonProps, parseColor } from "react-aria-components";
 
 interface RanguEyeDropperProps extends ButtonProps {}
 
