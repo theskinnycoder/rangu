@@ -29,7 +29,7 @@
 	"keywords": ["react", "colors", "input", "accessible", "color-picker"],
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"sideEffects": true,
+	"sideEffects": ["**/*.css"],
 	"files": ["dist"],
 	"exports": {
 		".": {
@@ -37,14 +37,13 @@
 				"types": "./dist/index.d.ts",
 				"default": "./dist/index.js"
 			}
-		},
-		"./package.json": "./package.json"
+		}
 	},
 	"scripts": {
-		"dev:tsup": "tsup --watch",
+		"dev:vite": "vite",
 		"dev:storybook": "storybook dev -p 6006",
-		"dev": "pnpm dev:tsup & pnpm dev:storybook",
-		"build": "tsup --minify",
+		"dev": "pnpm dev:vite & pnpm dev:storybook",
+		"build": "tsc && vite build",
 		"build:storybook": "storybook build",
 		"build:all": "pnpm build & pnpm build:storybook",
 		"lint": "pnpm biome lint ./src",
@@ -57,7 +56,8 @@
 	},
 	"dependencies": {
 		"react-aria-components": "^1.2.1",
-		"tailwind-merge": "^2.3.0"
+		"tailwind-merge": "^2.3.0",
+		"clsx": "^2.1.1"
 	},
 	"peerDependencies": {
 		"react": "^16.8 || ^17.0 || ^18.0",
@@ -89,14 +89,14 @@
 		"@types/react-dom": "^18.3.0",
 		"@vitejs/plugin-react-swc": "^3.7.0",
 		"autoprefixer": "^10.4.19",
-		"clsx": "^2.1.1",
 		"postcss": "^8.4.38",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"storybook": "^8.1.5",
 		"tailwindcss": "^3.4.3",
-		"tsup": "^8.1.0",
 		"typescript": "^5.4.5",
-		"vite": "^5.2.12"
+		"vite": "^5.2.12",
+		"vite-plugin-dts": "^3.9.1",
+		"vite-plugin-lib-inject-css": "^2.1.1"
 	}
 }

@@ -14,13 +14,7 @@
 		"lineEnding": "lf",
 		"lineWidth": 80,
 		"attributePosition": "multiline",
-		"ignore": [
-			"**/dist",
-			"**/node_modules",
-			"**/.git",
-			"**/.tsup",
-			"**/storybook-static"
-		]
+		"ignore": ["dist", "node_modules", "**/storybook-static"]
 	},
 	"organizeImports": { "enabled": true },
 	"css": {
@@ -105,15 +99,7 @@
 				"useValidTypeof": "error"
 			}
 		},
-		"ignore": [
-			"**/.*.js",
-			"node_modules",
-			"dist",
-			"**/postcss.config.cjs",
-			"**/.git",
-			"**/.tsup",
-			"**/storybook-static"
-		]
+		"ignore": ["dist", "node_modules", "**/storybook-static"]
 	},
 	"javascript": {
 		"formatter": {
