@@ -2,8 +2,8 @@ import { defineConfig } from "tsup";
 
 export default defineConfig({
 	name: "rangu",
-	entry: ["src/index.tsx"],
-	format: ["esm", "cjs"],
+	entry: ["src/index.ts"],
+	format: ["esm"],
 	outDir: "dist",
 	clean: true,
 	sourcemap: true,

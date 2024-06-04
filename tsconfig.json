@@ -1,45 +1,15 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
-	"display": "TSConfig for a React Library",
+	"extends": "@total-typescript/tsconfig/bundler/dom/library",
 	"compilerOptions": {
-		"esModuleInterop": true,
-		"skipLibCheck": true,
-		"target": "ESNext",
-		"verbatimModuleSyntax": true,
-		"allowJs": false,
-		"resolveJsonModule": true,
-		"moduleDetection": "force",
-
-		"strict": true,
-		"noUncheckedIndexedAccess": true,
-		"noUnusedLocals": true,
-		"noUnusedParameters": true,
-		"noFallthroughCasesInSwitch": true,
-		"allowSyntheticDefaultImports": true,
-		"forceConsistentCasingInFileNames": true,
-
-		"moduleResolution": "Bundler",
-		"module": "ESNext",
-		"noEmit": true,
-		"allowImportingTsExtensions": true,
-		"incremental": true,
-		"tsBuildInfoFile": "tsconfig.tsbuildinfo",
-
-		"lib": ["ESNext", "DOM", "DOM.Iterable"],
-
 		"jsx": "react-jsx",
-		"declaration": true,
-		"declarationMap": true,
-		"composite": false,
-
+		"rootDir": "src",
+		"outDir": "dist",
 		"baseUrl": "./",
 		"paths": {
 			"@/*": ["src/*"]
 		}
 	},
 	"include": ["src", "index.d.ts"],
-	"exclude": ["node_modules", "dist", "tailwind.config.ts", "*.stories.tsx"],
-	"buildOptions": {
-		"incremental": true
-	}
+	"exclude": ["node_modules", "dist", "tailwind.config.ts", "*.stories.tsx"]
 }
