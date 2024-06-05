@@ -13,7 +13,7 @@ bun add rangu
 
 ## Usage
 
-- All the components should be rendered inside the `Rangu.Root` component, which acts as a provider.
+- All the components should be rendered inside the `Rangu` component, which acts as a provider.
 
 ```jsx
 import { useState } from "react";
@@ -23,10 +23,9 @@ export function ColorPicker() {
 	const [value, setValue] = useState("#f00");
 
 	return (
-		<Rangu.Root
+		<Rangu
 			value={value}
 			onChange={setValue}
-			outputFormat="rgba"
 		>
 			<div
 				style={{
@@ -81,7 +80,7 @@ export function ColorPicker() {
 					Final Color : {value}
 				</span>
 			</div>
-		</Rangu.Root>
+		</Rangu>
 	);
 }
 ```

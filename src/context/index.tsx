@@ -2,7 +2,6 @@ import * as React from "react";
 import { type Color, type ColorFormat } from "react-aria-components";
 
 interface RanguContextProps {
-	outputFormat: ColorFormat;
 	value: Color;
 	onChange: (value: Color) => void;
 }

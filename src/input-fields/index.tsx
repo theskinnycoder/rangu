@@ -4,6 +4,7 @@ import * as React from "react";
 import {
 	ColorField,
 	type ColorFieldProps,
+	type ColorFormat,
 	Input,
 	Label,
 } from "react-aria-components";
@@ -44,15 +45,27 @@ const RanguColorField = React.forwardRef<HTMLDivElement, RanguColorFieldProps>(
 
 interface RanguInputsFieldProps {
 	className?: string;
+
+	/**
+	 * Whether to show labels for the input fields.
+	 * @default true
+	 */
 	withLabels?: boolean;
+
+	/**
+	 * The format of the color input fields.
+	 * @default "hex"
+	 * @type `'hex' | 'hexa' | 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'hsb' | 'hsba'`
+	 */
+	format?: ColorFormat;
 }
 
 const RanguInputFields = (props: RanguInputsFieldProps) => {
-	const { className, withLabels = true, ...rest } = props;
+	const { className, withLabels = true, format = "hex", ...rest } = props;
 
-	const { value, onChange, outputFormat } = useRangu();
+	const { value, onChange } = useRangu();
 
-	switch (outputFormat) {
+	switch (format) {
 		case "rgb":
 		case "rgba":
 			return (

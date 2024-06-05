@@ -10,10 +10,9 @@ const useRangu = () => {
 		);
 	}
 
-	const { outputFormat, value, onChange } = context;
+	const { value, onChange } = context;
 
 	return {
-		outputFormat,
 		value,
 		onChange,
 	};

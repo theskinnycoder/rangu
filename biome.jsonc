@@ -16,7 +16,7 @@
 		"attributePosition": "multiline",
 		"ignore": ["dist", "node_modules", "**/storybook-static"]
 	},
-	"organizeImports": { "enabled": true },
+	"organizeImports": { "enabled": true, "include": ["**/*.{ts,tsx,js,jsx}"] },
 	"css": {
 		"formatter": {
 			"enabled": false

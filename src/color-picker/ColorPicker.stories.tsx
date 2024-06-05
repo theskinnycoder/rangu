@@ -6,10 +6,9 @@ const ExampleColorPicker = ({ color }: { color: string }) => {
 	const [value, setValue] = useState(color);
 
 	return (
-		<Rangu.Root
+		<Rangu
 			value={value}
-			onChange={setValue}
-			outputFormat="rgba"
+			onChange={({ rgba }) => setValue(rgba)}
 		>
 			<div
 				style={{
@@ -64,7 +63,7 @@ const ExampleColorPicker = ({ color }: { color: string }) => {
 					Final Color : {value}
 				</span>
 			</div>
-		</Rangu.Root>
+		</Rangu>
 	);
 };
 

@@ -5,10 +5,10 @@ interface RanguProviderProps
 	extends React.PropsWithChildren<RanguContextProps> {}
 
 const RanguProvider = (props: RanguProviderProps) => {
-	const { value, onChange, outputFormat, children } = props;
+	const { value, onChange, children } = props;
 
 	return (
-		<RanguContext.Provider value={{ outputFormat, value, onChange }}>
+		<RanguContext.Provider value={{ value, onChange }}>
 			{children}
 		</RanguContext.Provider>
 	);

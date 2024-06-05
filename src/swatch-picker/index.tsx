@@ -1,4 +1,3 @@
-import { useRangu } from "@/hooks/use-rangu";
 import { cn, getContrastColor } from "@/utils";
 import * as React from "react";
 import {
@@ -14,6 +13,31 @@ interface RanguSwatchPickerProps
 		ColorSwatchPickerProps,
 		"value" | "defaultValue" | "onChange" | "layout" | "children"
 	> {
+	/**
+	 * An array of color strings.
+	 *
+	 * @example
+	 * ```tsx
+	 * <Rangu.SwatchPicker
+	 * 	colors={[
+	 * 		"#A00",
+	 * 		"#f80",
+	 * 		"#080",
+	 * 		"#08f",
+	 * 		"#088",
+	 * 		"#008",
+	 * 		"#ff0",
+	 * 		"#0f0",
+	 * 		"#0ff",
+	 * 		"#00f",
+	 * 		"#f0f",
+	 * 		"#000",
+	 * 	]}
+	 * />
+	 * ```
+	 *
+	 * NOTE: The `colors` prop must not be empty and must not have more than 12 colors.
+	 */
 	colors: Array<string>;
 }
 
@@ -21,8 +45,6 @@ const RanguSwatchPicker = React.forwardRef<
 	HTMLDivElement,
 	RanguSwatchPickerProps
 >(({ className, colors, ...rest }, forwardedRef) => {
-	const { outputFormat } = useRangu();
-
 	if (!colors || colors.length === 0) {
 		throw new Error("Rangu.SwatchPicker: `colors` prop must not be empty");
 	}
@@ -33,9 +55,7 @@ const RanguSwatchPicker = React.forwardRef<
 		);
 	}
 
-	const transformedColors = colors.map((color) =>
-		parseColor(color).toFormat(outputFormat),
-	);
+	const transformedColors = colors.map((color) => parseColor(color));
 
 	return (
 		<ColorSwatchPicker
@@ -48,7 +68,7 @@ const RanguSwatchPicker = React.forwardRef<
 		>
 			{transformedColors.map((color) => (
 				<ColorSwatchPickerItem
-					key={color.toString(outputFormat)}
+					key={color.toString()}
 					color={color}
 					className={cn(
 						"size-5 shrink-0 rounded-[4px] border-0 shadow-sm shadow-slate-200 outline-none ring-0",
@@ -59,7 +79,7 @@ const RanguSwatchPicker = React.forwardRef<
 					)}
 					style={{
 						backgroundColor: color.toString("rgba"),
-						borderColor: getContrastColor(color.toString(outputFormat)),
+						borderColor: getContrastColor(color.toString("rgba")),
 					}}
 				>
 					<ColorSwatch />
