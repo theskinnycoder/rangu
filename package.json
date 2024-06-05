@@ -26,21 +26,11 @@
 	"bugs": {
 		"url": "https://github.com/theskinnycoder/rangu/issues"
 	},
-	"keywords": [
-		"react",
-		"colors",
-		"input",
-		"accessible",
-		"color-picker"
-	],
+	"keywords": ["react", "colors", "input", "accessible", "color-picker"],
 	"module": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"sideEffects": [
-		"**/*.css"
-	],
-	"files": [
-		"dist"
-	],
+	"sideEffects": ["**/*.css"],
+	"files": ["dist"],
 	"exports": {
 		".": {
 			"import": {
