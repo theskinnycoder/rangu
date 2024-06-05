@@ -1,5 +1,0 @@
-dist
-node_modules
-.git
-.tsup
-storybook-static

@@ -1,4 +1,3 @@
-import { useRangu } from "@/hooks/use-rangu";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
@@ -26,15 +25,11 @@ const RanguAlphaSlider = React.forwardRef<
 	HTMLDivElement,
 	RanguAlphaSliderProps
 >(({ className, ...rest }, forwardedRef) => {
-	const { value, onChange } = useRangu();
-
 	return (
 		<ColorSlider
 			{...rest}
 			channel="alpha"
 			orientation="horizontal"
-			value={value}
-			onChange={onChange}
 			className={cn("w-52", "cursor-ew-resize", className)}
 			ref={forwardedRef}
 		>

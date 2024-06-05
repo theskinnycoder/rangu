@@ -1,0 +1,59 @@
+name: QA
+
+on:
+  pull_request:
+    branches:
+      - canary
+
+jobs:
+  build:
+    name: Setup, Install & Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        uses: ./.github/common-actions/install
+
+      - name: Build Package
+        run: pnpm build
+
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        uses: ./.github/common-actions/install
+
+      - name: Run Tests
+        run: pnpm test
+
+  lint_format_checks:
+    name: Biome Linting & Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        uses: ./.github/common-actions/install
+
+      - name: Run Biome Linting
+        run: pnpm check
+
+  types:
+    name: TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        uses: ./.github/common-actions/install
+
+      - name: Run typecheck
+        run: pnpm typecheck
