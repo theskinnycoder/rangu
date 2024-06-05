@@ -134,34 +134,29 @@ const RanguColorPicker = (props: RanguColorPickerProps) => {
 
 	const [color, setColor] = React.useState(parseColor(value));
 
-	const output = React.useMemo(
-		() => ({
-			alpha: color.getChannelValue("alpha"),
-			red: color.toFormat("rgb").getChannelValue("red"),
-			green: color.toFormat("rgb").getChannelValue("green"),
-			blue: color.toFormat("rgb").getChannelValue("blue"),
-			brightness: color.toFormat("hsb").getChannelValue("brightness"),
-			lightness: color.toFormat("hsl").getChannelValue("lightness"),
-			saturation: color.toFormat("hsl").getChannelValue("saturation"),
-			hue: color.toFormat("hsl").getChannelValue("hue"),
-			hex: color.toString("hex"),
-			rgb: color.toString("rgb"),
-			hsl: color.toString("hsl"),
-			hsb: color.toString("hsb"),
-			hexa: color.toString("hexa"),
-			rgba: color.toString("rgba"),
-			hsla: color.toString("hsla"),
-			hsba: color.toString("hsba"),
-		}),
-		[color],
-	);
-
 	const onChangeHandler = React.useCallback(
 		(value: Color) => {
 			setColor(value);
-			onChange(output);
+			onChange({
+				alpha: value.getChannelValue("alpha"),
+				red: value.toFormat("rgb").getChannelValue("red"),
+				green: value.toFormat("rgb").getChannelValue("green"),
+				blue: value.toFormat("rgb").getChannelValue("blue"),
+				brightness: value.toFormat("hsb").getChannelValue("brightness"),
+				lightness: value.toFormat("hsl").getChannelValue("lightness"),
+				saturation: value.toFormat("hsl").getChannelValue("saturation"),
+				hue: value.toFormat("hsl").getChannelValue("hue"),
+				hex: value.toString("hex"),
+				rgb: value.toString("rgb"),
+				hsl: value.toString("hsl"),
+				hsb: value.toString("hsb"),
+				hexa: value.toString("hexa"),
+				rgba: value.toString("rgba"),
+				hsla: value.toString("hsla"),
+				hsba: value.toString("hsba"),
+			});
 		},
-		[onChange, output],
+		[onChange],
 	);
 
 	return (
