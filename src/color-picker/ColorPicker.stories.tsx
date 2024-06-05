@@ -53,7 +53,10 @@ const ExampleColorPicker = ({ color }: { color: string }) => {
 				</div>
 
 				<Rangu.EyeDropper />
-				<Rangu.InputFields withLabels />
+				<Rangu.InputFields
+					withLabels
+					format="hexa"
+				/>
 
 				<span
 					style={{

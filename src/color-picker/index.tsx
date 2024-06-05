@@ -1,11 +1,9 @@
 import { RanguAlphaSlider } from "@/alpha-slider";
 import { RanguColorArea } from "@/color-area";
-import { type RanguContextProps } from "@/context";
 import { RanguCurrentColor } from "@/current-color";
 import { RanguEyeDropper } from "@/eye-dropper";
 import { RanguHueSlider } from "@/hue-slider";
 import { RanguInputFields } from "@/input-fields";
-import { RanguProvider } from "@/provider";
 import { RanguSwatchPicker } from "@/swatch-picker";
 import * as React from "react";
 import {
@@ -97,9 +95,7 @@ type onChangeCallbackProps = {
 	hsba: string;
 };
 
-interface RanguColorPickerProps
-	extends Omit<RanguContextProps, "value" | "onChange">,
-		Pick<ColorPickerProps, "children"> {
+interface RanguColorPickerProps extends Pick<ColorPickerProps, "children"> {
 	// omit the `Color` based state and setter and add `string` based ones
 	/**
 	 * The color value in any format.
@@ -169,18 +165,13 @@ const RanguColorPicker = (props: RanguColorPickerProps) => {
 	);
 
 	return (
-		<RanguProvider
+		<ColorPicker
+			{...rest}
 			value={color}
 			onChange={onChangeHandler}
 		>
-			<ColorPicker
-				{...rest}
-				value={color}
-				onChange={onChangeHandler}
-			>
-				{children}
-			</ColorPicker>
-		</RanguProvider>
+			{children}
+		</ColorPicker>
 	);
 };
 

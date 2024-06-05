@@ -1,4 +1,3 @@
-import { useRangu } from "@/hooks/use-rangu";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
@@ -63,8 +62,6 @@ interface RanguInputsFieldProps {
 const RanguInputFields = (props: RanguInputsFieldProps) => {
 	const { className, withLabels = true, format = "hex", ...rest } = props;
 
-	const { value, onChange } = useRangu();
-
 	switch (format) {
 		case "rgb":
 		case "rgba":
@@ -72,8 +69,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 				<div className="mx-auto flex max-w-52 items-center gap-1">
 					<RanguColorField
 						{...rest}
-						value={value}
-						onChange={onChange as ColorFieldProps["onChange"]}
 						label={withLabels ? "Red" : undefined}
 						className={className}
 						colorSpace="rgb"
@@ -82,8 +77,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 
 					<RanguColorField
 						{...rest}
-						value={value}
-						onChange={onChange as ColorFieldProps["onChange"]}
 						label={withLabels ? "Green" : undefined}
 						className={className}
 						colorSpace="rgb"
@@ -92,8 +85,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 
 					<RanguColorField
 						{...rest}
-						value={value}
-						onChange={onChange as ColorFieldProps["onChange"]}
 						label={withLabels ? "Blue" : undefined}
 						className={className}
 						colorSpace="rgb"
@@ -108,8 +99,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 				<div className="mx-auto flex max-w-52 items-center gap-1">
 					<RanguColorField
 						{...rest}
-						value={value}
-						onChange={onChange as ColorFieldProps["onChange"]}
 						label={withLabels ? "Hue" : undefined}
 						className={className}
 						colorSpace="hsb"
@@ -118,8 +107,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 
 					<RanguColorField
 						{...rest}
-						value={value}
-						onChange={onChange as ColorFieldProps["onChange"]}
 						label={withLabels ? "Saturation" : undefined}
 						className={className}
 						colorSpace="hsb"
@@ -128,8 +115,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 
 					<RanguColorField
 						{...rest}
-						value={value}
-						onChange={onChange as ColorFieldProps["onChange"]}
 						label={withLabels ? "Brightness" : undefined}
 						className={className}
 						colorSpace="hsb"
@@ -144,8 +129,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 				<div className="mx-auto flex max-w-52 items-center gap-1">
 					<RanguColorField
 						{...rest}
-						value={value}
-						onChange={onChange as ColorFieldProps["onChange"]}
 						label={withLabels ? "Hue" : undefined}
 						className={className}
 						colorSpace="hsl"
@@ -154,8 +137,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 
 					<RanguColorField
 						{...rest}
-						value={value}
-						onChange={onChange as ColorFieldProps["onChange"]}
 						label={withLabels ? "Saturation" : undefined}
 						className={className}
 						colorSpace="hsl"
@@ -164,8 +145,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 
 					<RanguColorField
 						{...rest}
-						value={value}
-						onChange={onChange as ColorFieldProps["onChange"]}
 						label={withLabels ? "Lightness" : undefined}
 						className={className}
 						colorSpace="hsl"
@@ -180,8 +159,6 @@ const RanguInputFields = (props: RanguInputsFieldProps) => {
 			return (
 				<RanguColorField
 					{...rest}
-					value={value}
-					onChange={onChange as ColorFieldProps["onChange"]}
 					label={withLabels ? "Hex" : undefined}
 					className={className}
 				/>
