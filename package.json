@@ -52,6 +52,7 @@
 		"format": "pnpm biome format --write ./src",
 		"check": "pnpm biome check --changed ./src",
 		"check:staged": "pnpm biome check --staged ./src",
+		"test": "echo \"WIP: No tests yet\"",
 		"prerelease": "pnpm build",
 		"version": "changeset version",
 		"release": "changeset publish",
