@@ -13,7 +13,7 @@ import {
 	parseColor,
 } from "react-aria-components";
 
-type onChangeCallbackProps = {
+type ColorCallbackValues = {
 	/**
 	 * The alpha or opacity value of the color.
 	 */
@@ -126,7 +126,7 @@ interface RanguColorPickerProps extends Pick<ColorPickerProps, "children"> {
 	 * hsba: "hsba(0, 100%, 100%, 1)"
 	 * ```
 	 */
-	onChange: (value: onChangeCallbackProps) => void;
+	onChange: (value: ColorCallbackValues) => void;
 }
 
 const RanguColorPicker = (props: RanguColorPickerProps) => {

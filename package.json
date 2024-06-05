@@ -46,13 +46,17 @@
 		"build": "tsc && vite build",
 		"build:storybook": "storybook build",
 		"build:all": "pnpm build & pnpm build:storybook",
+		"typecheck": "tsc --noEmit",
 		"lint": "pnpm biome lint ./src",
 		"lint:fix": "pnpm biome lint --write ./src",
 		"format": "pnpm biome format --write ./src",
 		"check": "pnpm biome check --changed ./src",
 		"check:staged": "pnpm biome check --staged ./src",
 		"prerelease": "pnpm build",
-		"release": "changeset publish"
+		"version": "changeset version",
+		"release": "changeset publish",
+		"version:canary": "changeset version --snapshot canary",
+		"release:canary": "changeset publish --snapshot --no-git-tag --tag canary"
 	},
 	"dependencies": {
 		"react-aria-components": "^1.2.1",
