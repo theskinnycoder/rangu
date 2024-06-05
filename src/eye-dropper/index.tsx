@@ -1,12 +1,23 @@
-import { useRangu } from "@/hooks/use-rangu";
 import { cn } from "@/utils";
-import { Button, parseColor, type ButtonProps } from "react-aria-components";
+import * as React from "react";
+import {
+	Button,
+	ColorPickerStateContext,
+	parseColor,
+	type ButtonProps,
+} from "react-aria-components";
 
 interface RanguEyeDropperProps extends ButtonProps {}
 
 const RanguEyeDropper = (props: RanguEyeDropperProps) => {
 	const { className, ...rest } = props;
-	const { onChange } = useRangu();
+	const context = React.useContext(ColorPickerStateContext);
+
+	if (!context) {
+		throw new Error(
+			"`Rangu.EyeDropper` must be used within a `Rangu` provider component.",
+		);
+	}
 
 	if (typeof EyeDropper === "undefined") {
 		throw new Error("EyeDropper is not supported in your browser.");
@@ -19,7 +30,7 @@ const RanguEyeDropper = (props: RanguEyeDropperProps) => {
 			onPress={() => {
 				new EyeDropper().open().then((result) => {
 					if (result) {
-						onChange(parseColor(result.sRGBHex));
+						context.setColor(parseColor(result.sRGBHex));
 					}
 				});
 			}}
