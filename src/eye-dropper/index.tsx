@@ -35,33 +35,27 @@ const RanguEyeDropper = (props: RanguEyeDropperProps) => {
 				});
 			}}
 			className={cn(
-				"rounded-md border border-slate-800 p-1 shadow-sm outline-none",
-				"bg-white hover:bg-slate-50",
+				"rounded-small outline-0 size-8 flex items-center justify-center ring-0 border-0",
+				"bg-bg hover:bg-hover-bg text-text",
 				"data-[pressed=true]:scale-95",
-				"focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 focus-visible:ring-offset-slate-50",
-				"transition-all duration-100 ease-in-out",
+				"focus-visible:ring-2 focus-visible:ring-accent",
+				"transition-all duration-150 ease-in-out",
 				className,
 			)}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				width="24"
-				height="24"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				strokeWidth="2"
-				strokeLinecap="round"
-				strokeLinejoin="round"
-				className="size-4"
+				width="15"
+				height="15"
+				viewBox="0 0 15 15"
 			>
 				<path
+					fill="currentColor"
+					fillOpacity="1"
+					fillRule="nonzero"
 					stroke="none"
-					d="M0 0h24v24H0z"
-					fill="none"
-				/>
-				<path d="M11 7l6 6" />
-				<path d="M4 16l11.7 -11.7a1 1 0 0 1 1.4 0l2.6 2.6a1 1 0 0 1 0 1.4l-11.7 11.7h-4v-4z" />
+					d="M14.122.688c-.8-.8-2-.8-2.8 0l-2.8 2.8-.8-.7c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l.7.7-5.8 5.8c-.4.4-1 1.9 0 2.9 1 1 2.5.4 2.9 0l5.8-5.8.7.7c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4l-.7-.7 2.8-2.8c.8-.9.8-2.1 0-2.9zm-10.9 11.9h-1v-1l5.8-5.8 1 1c-.1 0-5.8 5.8-5.8 5.8z"
+				></path>
 			</svg>
 		</Button>
 	);

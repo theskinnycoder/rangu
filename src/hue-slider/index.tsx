@@ -29,20 +29,19 @@ const RanguHueSlider = React.forwardRef<HTMLDivElement, RanguHueSliderProps>(
 				channel="hue"
 				colorSpace="hsb"
 				orientation="horizontal"
-				className={cn("w-52", "cursor-ew-resize", className)}
+				className={cn("min-w-[10.5rem] cursor-ew-resize", className)}
 				ref={forwardedRef}
 			>
 				{/* Track */}
-				<SliderTrack className={cn("group h-4 rounded-full")}>
+				<SliderTrack className={cn("group h-3 rounded-medium")}>
 					{/* Thumb */}
 					<ColorThumb
 						className={cn(
-							"top-1/2 size-5 rounded-full",
-							"data-[dragging=true]:size-6",
+							"top-1/2 size-3 rounded-full bg-transparent shadow-thumb",
+							"data-[dragging=true]:size-3.5",
 							"duration-300 ease-in-out",
-							"shadow-2xl shadow-slate-800 dark:shadow-slate-100",
-							"ring-2 ring-slate-50 ring-offset-2 ring-offset-slate-950 dark:ring-slate-950 dark:ring-offset-slate-50",
-							"data-[focus-visible=true]:size-6 data-[focus-visible=true]:ring-blue-500",
+							"border-2 border-text",
+							"data-[focus-visible=true]:size-3.5 data-[focus-visible=true]:ring-accent data-[focus-visible=true]:ring-offset-1 data-[focus-visible=true]:ring-1 data-[focus-visible=true]:ring-offset-text",
 						)}
 						style={{
 							transitionProperty: "width, height",

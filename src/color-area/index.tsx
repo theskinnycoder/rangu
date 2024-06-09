@@ -30,16 +30,18 @@ const RanguColorArea = React.forwardRef<HTMLDivElement, RanguColorAreaProps>(
 				xChannel="saturation"
 				yChannel="brightness"
 				ref={forwardedRed}
-				className={cn("relative size-52 shrink-0 rounded-lg", className)}
+				className={cn(
+					"relative min-w-60 min-h-60 size-full aspect-square shrink-0 rounded-none",
+					className,
+				)}
 			>
 				<ColorThumb
 					className={cn(
-						"size-5 rounded-full",
-						"data-[dragging=true]:size-6",
+						"size-3 rounded-full bg-transparent shadow-thumb",
+						"data-[dragging=true]:size-3.5",
 						"duration-300 ease-in-out",
-						"shadow-2xl shadow-slate-800 dark:shadow-slate-100",
-						"ring-2 ring-slate-50 ring-offset-2 ring-offset-slate-950 dark:ring-slate-950 dark:ring-offset-slate-50",
-						"data-[focus-visible=true]:size-6 data-[focus-visible=true]:ring-blue-500",
+						"border-2 border-text",
+						"data-[focus-visible=true]:size-3.5 data-[focus-visible=true]:ring-accent data-[focus-visible=true]:ring-offset-1 data-[focus-visible=true]:ring-1 data-[focus-visible=true]:ring-offset-text",
 					)}
 					style={{
 						transitionProperty: "width, height",
