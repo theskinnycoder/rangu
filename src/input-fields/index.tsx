@@ -458,8 +458,22 @@ const RanguInputFields = (props: RanguInputFieldsProps) => {
 		...rest
 	} = props;
 
+	const emptySupportedFormats = supportedFormats.length === 0;
+	const moreThanOneFormat = supportedFormats.length > 1;
+
+	if (emptySupportedFormats && !supportedFormats.includes(defaultFormat)) {
+		throw new Error(
+			`Rangu.InputFields: The default format '${defaultFormat}' is not included in the supported formats.`,
+		);
+	}
+
+	const finalDefaultFormat =
+		moreThanOneFormat || emptySupportedFormats
+			? defaultFormat
+			: supportedFormats[0]!;
+
 	const [colorFormat, setColorFormat] =
-		React.useState<ColorFormat>(defaultFormat);
+		React.useState<ColorFormat>(finalDefaultFormat);
 
 	return (
 		<RanguColorFormatContext.Provider
@@ -469,8 +483,13 @@ const RanguInputFields = (props: RanguInputFieldsProps) => {
 				setColorFormat,
 			}}
 		>
-			<div className="flex items-center gap-0.5 justify-between">
-				<RanguColorFormatSwitcher />
+			<div
+				className={cn("flex items-center gap-0.5", {
+					"justify-between": moreThanOneFormat,
+					"justify-center": !moreThanOneFormat,
+				})}
+			>
+				{moreThanOneFormat && <RanguColorFormatSwitcher />}
 
 				<RanguSelectedInputFields {...rest} />
 			</div>

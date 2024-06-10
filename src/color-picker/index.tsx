@@ -5,12 +5,13 @@ import { RanguEyeDropper } from "@/eye-dropper";
 import { RanguHueSlider } from "@/hue-slider";
 import { RanguInputFields } from "@/input-fields";
 import { RanguSwatchPicker } from "@/swatch-picker";
+import { cn } from "@/utils";
 import * as React from "react";
 import {
-	type Color,
 	ColorPicker,
-	type ColorPickerProps,
 	parseColor,
+	type Color,
+	type ColorPickerProps,
 } from "react-aria-components";
 
 type ColorCallbackValues = {
@@ -127,10 +128,15 @@ interface RanguColorPickerProps extends Pick<ColorPickerProps, "children"> {
 	 * ```
 	 */
 	onChange: (value: ColorCallbackValues) => void;
+
+	/**
+	 * The `className` of the color picker.
+	 */
+	className?: string;
 }
 
 const RanguColorPicker = (props: RanguColorPickerProps) => {
-	const { children, value, onChange, ...rest } = props;
+	const { children, className, value, onChange, ...rest } = props;
 
 	const [color, setColor] = React.useState(parseColor(value));
 
@@ -160,13 +166,20 @@ const RanguColorPicker = (props: RanguColorPickerProps) => {
 	);
 
 	return (
-		<ColorPicker
-			{...rest}
-			value={color}
-			onChange={onChangeHandler}
+		<div
+			className={cn(
+				"bg-bg flex flex-col items-center border border-dropdown-bg rounded-small w-fit",
+				className,
+			)}
 		>
-			{children}
-		</ColorPicker>
+			<ColorPicker
+				{...rest}
+				value={color}
+				onChange={onChangeHandler}
+			>
+				{children}
+			</ColorPicker>
+		</div>
 	);
 };
 
