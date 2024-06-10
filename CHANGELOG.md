@@ -1,5 +1,11 @@
 # rangu
 
+## 1.2.0
+
+### Minor Changes
+
+- [#15](https://github.com/theskinnycoder/rangu/pull/15) [`42ba4e6`](https://github.com/theskinnycoder/rangu/commit/42ba4e66411bebeecf19ba465b70cd3edf500ea4) Thanks [@theskinnycoder](https://github.com/theskinnycoder)! - Made all the components dark themed, and added supported for switching between input fields using a dropdown.
+
 ## 1.1.0
 
 ### Minor Changes
