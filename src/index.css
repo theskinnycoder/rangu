@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --rangu-bg: 0 0% 17%;
+    --rangu-hover-bg: 0 0% 22%;
+    --rangu-dropdown-bg: 0 0% 12%;
+    --rangu-border: 0 0% 27%;
+    --rangu-accent: 205 91% 48%;
+    --rangu-selected: 221 23% 38%;
+		--rangu-text: 0 0% 100%;
+  }
+}

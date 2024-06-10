@@ -49,12 +49,6 @@ const RanguSwatchPicker = React.forwardRef<
 		throw new Error("Rangu.SwatchPicker: `colors` prop must not be empty");
 	}
 
-	if (colors.length > 12) {
-		throw new Error(
-			"Rangu.SwatchPicker: `colors` prop must not have more than 12 colors",
-		);
-	}
-
 	const transformedColors = colors.map((color) => parseColor(color));
 
 	return (
@@ -62,7 +56,7 @@ const RanguSwatchPicker = React.forwardRef<
 			{...rest}
 			ref={forwardedRef}
 			className={cn(
-				"flex h-14 max-w-36 flex-wrap items-center justify-center gap-x-1 gap-y-1",
+				"grid h-12 max-w-52 items-center justify-center gap-2 grid-cols-9",
 				className,
 			)}
 		>
@@ -71,13 +65,13 @@ const RanguSwatchPicker = React.forwardRef<
 					key={color.toString()}
 					color={color}
 					className={cn(
-						"size-5 shrink-0 rounded-[4px] border-0 shadow-sm shadow-slate-200 outline-none ring-0",
+						"size-4 shrink-0 rounded-small border-0 outline-none ring-0",
 						"data-[pressed=true]:scale-90",
-						"focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-blue-500",
-						"data-[selected=true]:border-2 data-[selected=true]:outline-2 data-[selected=true]:outline-offset-1",
+						"focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent",
 						"transition-transform duration-300 ease-in-out",
 					)}
 					style={{
+						boxShadow: "rgba(255, 255, 255, 0.15) 0px 0px 0px 1px inset",
 						backgroundColor: color.toString("rgba"),
 						borderColor: getContrastColor(color.toString("rgba")),
 					}}

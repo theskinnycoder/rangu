@@ -96,7 +96,19 @@ export function ColorPicker() {
         </div>
 
         <Rangu.EyeDropper />
-        <Rangu.InputFields withLabels format="hexa" />
+        <Rangu.InputFields
+          withTooltips
+          supportedFormats={[
+            "hex",
+            "rgb",
+            "rgba",
+            "hsl",
+            "hsla",
+            "hsb",
+            "hsba",
+          ]}
+          defaultFormat="hsba"
+        />
 
         <span
           style={{
@@ -175,10 +187,11 @@ This component provides input fields to input color values.
 
 #### Props
 
-| **Name**     | **Type**  | **Default** | **Description**                              |
-| ------------ | --------- | ----------- | -------------------------------------------- |
-| `format`     | `string`  | `"hex"`     | The format of the color input fields.        |
-| `withLabels` | `boolean` | `false`     | Whether to show labels for the input fields. |
+| **Name**           | **Type**   | **Default** | **Description**                                                                                     |
+| ------------------ | ---------- | ----------- | --------------------------------------------------------------------------------------------------- |
+| `withTooltips`     | `boolean`  | `true`      | Whether to show tooltips for the input fields.                                                      |
+| `supportedFormats` | `string[]` | `["hexa"]`  | The supported color formats for the dropdown menu, which can switch between different input fields. |
+| `defaultFormat`    | `string`   | `"hexa"`    | The default format of the color input fields.                                                       |
 
 ### Rangu.EyeDropper
 
