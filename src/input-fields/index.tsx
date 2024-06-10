@@ -1,176 +1,510 @@
+import { RanguSelect, RanguSelectItem } from "@/select";
+import { RanguTooltip } from "@/tooltip";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
 	ColorField,
+	Input,
+	TooltipTrigger,
 	type ColorFieldProps,
 	type ColorFormat,
-	Input,
-	Label,
 } from "react-aria-components";
 
 interface RanguColorFieldProps extends ColorFieldProps {
-	label?: string;
+	tooltip?: string;
 }
 
 const RanguColorField = React.forwardRef<HTMLDivElement, RanguColorFieldProps>(
 	(props: RanguColorFieldProps, forwardedRef) => {
-		const { label, className, ...rest } = props;
+		const { tooltip, className, channel, ...rest } = props;
 
 		return (
-			<ColorField
-				{...rest}
-				ref={forwardedRef}
-				isWheelDisabled={false}
-				className={cn("flex flex-col gap-0.5")}
-			>
-				{label && (
-					<Label className="text-[10px] font-medium tracking-tight text-slate-800">
-						{label}
-					</Label>
-				)}
-				<Input
-					className={cn(
-						"m-0 w-fit max-w-[9ch] shrink-0 rounded-md border border-slate-800 bg-white px-1.5 py-1 text-xs font-medium text-slate-800 shadow-sm shadow-slate-200 placeholder:text-slate-200",
-						"outline-none",
-						"focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-1 focus-visible:ring-offset-slate-50",
-						"transition-colors duration-200 ease-in-out",
-						className,
-					)}
-				/>
-			</ColorField>
+			<TooltipTrigger isDisabled={!tooltip}>
+				<ColorField
+					{...rest}
+					channel={channel}
+					ref={forwardedRef}
+					isWheelDisabled={false}
+					className={cn("flex flex-col gap-0.5 grow-0")}
+				>
+					<Input
+						className={cn(
+							"m-0 rounded-small border border-transparent group-hover/all:border-border bg-bg px-1 py-px text-[11px] font-medium text-text placeholder:text-text/60 h-7 cursor-text",
+							"outline-none",
+							"focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-0",
+							"transition-all duration-200 ease-in-out",
+							"group-focus-within/all:ring-2 group-focus-within/all:ring-accent rounded-small w-20",
+							{
+								"w-11": channel === "alpha",
+								"w-10": [
+									"hue",
+									"saturation",
+									"lightness",
+									"brightness",
+									"red",
+									"green",
+									"blue",
+								].includes(channel!),
+							},
+							className,
+						)}
+						onFocus={(e) => {
+							e.target.select();
+
+							if (rest.onFocus) {
+								rest.onFocus(e);
+							}
+						}}
+					/>
+					<RanguTooltip>{tooltip}</RanguTooltip>
+				</ColorField>
+			</TooltipTrigger>
 		);
 	},
 );
 
-interface RanguInputsFieldProps {
+RanguColorField.displayName = "Rangu.ColorField";
+
+interface RanguColorFormatContextType {
+	supportedFormats: Array<ColorFormat>;
+	colorFormat: ColorFormat;
+	setColorFormat: (format: ColorFormat) => void;
+}
+
+const RanguColorFormatContext =
+	React.createContext<RanguColorFormatContextType>({
+		supportedFormats: ["hexa"],
+		colorFormat: "hexa",
+		setColorFormat: () => null,
+	});
+
+const RanguColorFormatSwitcher = () => {
+	const { supportedFormats, colorFormat, setColorFormat } = React.useContext(
+		RanguColorFormatContext,
+	);
+
+	return (
+		<RanguSelect
+			aria-label="Color Format"
+			selectedKey={colorFormat}
+			onSelectionChange={(s) => {
+				setColorFormat(s as ColorFormat);
+			}}
+		>
+			{supportedFormats.map((format) => (
+				<RanguSelectItem
+					key={format}
+					id={format}
+				>
+					{format.toUpperCase()}
+				</RanguSelectItem>
+			))}
+		</RanguSelect>
+	);
+};
+
+RanguColorFormatSwitcher.displayName = "Rangu.ColorFormatSwitcher";
+
+interface RanguSelectedInputFieldsProps {
 	className?: string;
 
 	/**
 	 * Whether to show labels for the input fields.
 	 * @default true
 	 */
-	withLabels?: boolean;
-
-	/**
-	 * The format of the color input fields.
-	 * @default "hex"
-	 * @type `'hex' | 'hexa' | 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'hsb' | 'hsba'`
-	 */
-	format?: ColorFormat;
+	withTooltips?: boolean;
 }
 
-const RanguInputFields = (props: RanguInputsFieldProps) => {
-	const { className, withLabels = true, format = "hex", ...rest } = props;
+const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
+	const { className, withTooltips = true, ...rest } = props;
 
-	switch (format) {
+	const { colorFormat } = React.useContext(RanguColorFormatContext);
+
+	switch (colorFormat) {
 		case "rgb":
-		case "rgba":
 			return (
-				<div className="mx-auto flex max-w-52 items-center gap-1">
+				<div className="flex items-center gap-0 group/all">
 					<RanguColorField
 						{...rest}
-						label={withLabels ? "Red" : undefined}
-						className={className}
+						tooltip={withTooltips ? "Red" : undefined}
+						className={cn(
+							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
 						colorSpace="rgb"
 						channel="red"
 					/>
 
 					<RanguColorField
 						{...rest}
-						label={withLabels ? "Green" : undefined}
-						className={className}
+						tooltip={withTooltips ? "Green" : undefined}
+						className={cn(
+							"rounded-r-none rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
 						colorSpace="rgb"
 						channel="green"
 					/>
 
 					<RanguColorField
 						{...rest}
-						label={withLabels ? "Blue" : undefined}
-						className={className}
+						tooltip={withTooltips ? "Blue" : undefined}
+						className={cn(
+							"rounded-l-none border-l-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
 						colorSpace="rgb"
 						channel="blue"
 					/>
 				</div>
 			);
 
-		case "hsb":
-		case "hsba":
+		case "rgba":
 			return (
-				<div className="mx-auto flex max-w-52 items-center gap-1">
+				<div className="flex items-center gap-0 group/all">
 					<RanguColorField
 						{...rest}
-						label={withLabels ? "Hue" : undefined}
-						className={className}
+						tooltip={withTooltips ? "Red" : undefined}
+						className={cn(
+							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="rgb"
+						channel="red"
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Green" : undefined}
+						className={cn(
+							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="rgb"
+						channel="green"
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Blue" : undefined}
+						className={cn(
+							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="rgb"
+						channel="blue"
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Opacity" : undefined}
+						className={cn(
+							"rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="rgb"
+						channel="alpha"
+					/>
+				</div>
+			);
+
+		case "hsb":
+			return (
+				<div className="flex items-center gap-0 group/all">
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Hue" : undefined}
+						className={cn(
+							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
 						colorSpace="hsb"
 						channel="hue"
 					/>
 
 					<RanguColorField
 						{...rest}
-						label={withLabels ? "Saturation" : undefined}
-						className={className}
+						tooltip={withTooltips ? "Saturation" : undefined}
+						className={cn(
+							"rounded-r-none rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
 						colorSpace="hsb"
 						channel="saturation"
 					/>
 
 					<RanguColorField
 						{...rest}
-						label={withLabels ? "Brightness" : undefined}
-						className={className}
+						tooltip={withTooltips ? "Brightness" : undefined}
+						className={cn(
+							"rounded-l-none border-l-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
 						colorSpace="hsb"
 						channel="brightness"
 					/>
 				</div>
 			);
 
-		case "hsl":
-		case "hsla":
+		case "hsba":
 			return (
-				<div className="mx-auto flex max-w-52 items-center gap-1">
+				<div className="flex items-center gap-0 group/all">
 					<RanguColorField
 						{...rest}
-						label={withLabels ? "Hue" : undefined}
-						className={className}
+						tooltip={withTooltips ? "Hue" : undefined}
+						className={cn(
+							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="hsb"
+						channel="hue"
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Saturation" : undefined}
+						className={cn(
+							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="hsb"
+						channel="saturation"
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Brightness" : undefined}
+						className={cn(
+							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="hsb"
+						channel="brightness"
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Opacity" : undefined}
+						className={cn(
+							"rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="hsb"
+						channel="alpha"
+					/>
+				</div>
+			);
+
+		case "hsl":
+			return (
+				<div className="flex items-center gap-0 group/all">
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Hue" : undefined}
+						className={cn(
+							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
 						colorSpace="hsl"
 						channel="hue"
 					/>
 
 					<RanguColorField
 						{...rest}
-						label={withLabels ? "Saturation" : undefined}
-						className={className}
+						tooltip={withTooltips ? "Saturation" : undefined}
+						className={cn(
+							"rounded-r-none rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
 						colorSpace="hsl"
 						channel="saturation"
 					/>
 
 					<RanguColorField
 						{...rest}
-						label={withLabels ? "Lightness" : undefined}
-						className={className}
+						tooltip={withTooltips ? "Lightness" : undefined}
+						className={cn(
+							"rounded-l-none border-l-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
 						colorSpace="hsl"
 						channel="lightness"
 					/>
 				</div>
 			);
 
+		case "hsla":
+			return (
+				<div className="flex items-center gap-0 group/all">
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Hue" : undefined}
+						className={cn(
+							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="hsl"
+						channel="hue"
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Saturation" : undefined}
+						className={cn(
+							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="hsl"
+						channel="saturation"
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Lightness" : undefined}
+						className={cn(
+							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="hsl"
+						channel="lightness"
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Opacity" : undefined}
+						className={cn(
+							"rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="hsl"
+						channel="alpha"
+					/>
+				</div>
+			);
+
 		case "hex":
+			return (
+				<div className="flex items-center group/all gap-0">
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Hex" : undefined}
+						className={cn(
+							"hover:border-border focus-visible:border-transparent",
+							className,
+						)}
+					/>
+				</div>
+			);
+
 		case "hexa":
 		default:
 			return (
-				<RanguColorField
-					{...rest}
-					label={withLabels ? "Hex" : undefined}
-					className={className}
-				/>
+				<div className="flex items-center gap-0 group/all">
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Hex" : undefined}
+						className={cn(
+							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+					/>
+
+					<RanguColorField
+						{...rest}
+						tooltip={withTooltips ? "Opacity" : undefined}
+						className={cn(
+							"rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							className,
+						)}
+						colorSpace="rgb"
+						channel="alpha"
+					/>
+				</div>
 			);
 	}
+};
+
+RanguSelectedInputFields.displayName = "Rangu.SelectedInputFields";
+
+interface RanguInputFieldsProps {
+	className?: string;
+
+	/**
+	 * Whether to show labels for the input fields.
+	 * @default true
+	 */
+	withTooltips?: boolean;
+
+	/**
+	 * The default format of the color input fields.
+	 * @default "hexa"
+	 * @type `'hex' | 'hexa' | 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'hsb' | 'hsba'`
+	 */
+	defaultFormat?: ColorFormat;
+
+	/**
+	 * The supported color formats for the dropdown menu, which can switch between different input fields.
+	 * @default ["hexa"]
+	 * @type `Array<'hex' | 'hexa' | 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'hsb' | 'hsba'>`
+	 */
+	supportedFormats?: Array<ColorFormat>;
+}
+
+const RanguInputFields = (props: RanguInputFieldsProps) => {
+	const {
+		className,
+		defaultFormat = "hexa",
+		supportedFormats = ["hexa"],
+		...rest
+	} = props;
+
+	const emptySupportedFormats = supportedFormats.length === 0;
+	const moreThanOneFormat = supportedFormats.length > 1;
+
+	if (emptySupportedFormats && !supportedFormats.includes(defaultFormat)) {
+		throw new Error(
+			`Rangu.InputFields: The default format '${defaultFormat}' is not included in the supported formats.`,
+		);
+	}
+
+	const finalDefaultFormat =
+		moreThanOneFormat || emptySupportedFormats
+			? defaultFormat
+			: supportedFormats[0]!;
+
+	const [colorFormat, setColorFormat] =
+		React.useState<ColorFormat>(finalDefaultFormat);
+
+	return (
+		<RanguColorFormatContext.Provider
+			value={{
+				supportedFormats,
+				colorFormat,
+				setColorFormat,
+			}}
+		>
+			<div
+				className={cn("flex items-center gap-0.5", {
+					"justify-between": moreThanOneFormat,
+					"justify-center": !moreThanOneFormat,
+				})}
+			>
+				{moreThanOneFormat && <RanguColorFormatSwitcher />}
+
+				<RanguSelectedInputFields {...rest} />
+			</div>
+		</RanguColorFormatContext.Provider>
+	);
 };
 
 RanguInputFields.displayName = "Rangu.InputFields";
 
 export {
 	RanguColorField,
+	RanguColorFormatContext,
 	RanguInputFields,
+	RanguSelectedInputFields,
 	type RanguColorFieldProps,
-	type RanguInputsFieldProps,
+	type RanguInputFieldsProps,
+	type RanguSelectedInputFieldsProps,
 };
