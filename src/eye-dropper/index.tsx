@@ -1,10 +1,11 @@
+import { ICONS } from "@/icons";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
 	Button,
+	type ButtonProps,
 	ColorPickerStateContext,
 	parseColor,
-	type ButtonProps,
 } from "react-aria-components";
 
 interface RanguEyeDropperProps extends ButtonProps {}
@@ -20,7 +21,9 @@ const RanguEyeDropper = (props: RanguEyeDropperProps) => {
 	}
 
 	if (typeof EyeDropper === "undefined") {
-		throw new Error("EyeDropper is not supported in your browser.");
+		console.warn("EyeDropper is not supported in your browser.");
+
+		return null;
 	}
 
 	return (
@@ -35,28 +38,15 @@ const RanguEyeDropper = (props: RanguEyeDropperProps) => {
 				});
 			}}
 			className={cn(
-				"rounded-small outline-0 size-8 flex items-center justify-center ring-0 border-0",
-				"bg-bg hover:bg-hover-bg text-text",
-				"data-[pressed=true]:scale-95",
-				"focus-visible:ring-2 focus-visible:ring-accent",
-				"transition-all duration-150 ease-in-out",
+				"rng-rounded-small rng-outline-0 rng-size-8 rng-flex rng-items-center rng-justify-center rng-ring-0 rng-border-0",
+				"rng-bg-bg hover:rng-bg-hover-bg rng-text-text",
+				"data-[pressed=true]:rng-scale-95",
+				"focus-visible:rng-ring-2 focus-visible:rng-ring-accent",
+				"rng-transition-all rng-duration-150 rng-ease-in-out",
 				className,
 			)}
 		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				width="15"
-				height="15"
-				viewBox="0 0 15 15"
-			>
-				<path
-					fill="currentColor"
-					fillOpacity="1"
-					fillRule="nonzero"
-					stroke="none"
-					d="M14.122.688c-.8-.8-2-.8-2.8 0l-2.8 2.8-.8-.7c-.4-.4-1-.4-1.4 0-.4.4-.4 1 0 1.4l.7.7-5.8 5.8c-.4.4-1 1.9 0 2.9 1 1 2.5.4 2.9 0l5.8-5.8.7.7c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4l-.7-.7 2.8-2.8c.8-.9.8-2.1 0-2.9zm-10.9 11.9h-1v-1l5.8-5.8 1 1c-.1 0-5.8 5.8-5.8 5.8z"
-				></path>
-			</svg>
+			<ICONS.eyeDropper />
 		</Button>
 	);
 };

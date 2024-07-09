@@ -56,7 +56,7 @@ const RanguSwatchPicker = React.forwardRef<
 			{...rest}
 			ref={forwardedRef}
 			className={cn(
-				"grid h-12 max-w-52 items-center justify-center gap-2 grid-cols-9",
+				"rng-grid rng-h-12 rng-max-w-52 rng-items-center rng-justify-center rng-gap-2 rng-grid-cols-9",
 				className,
 			)}
 		>
@@ -65,10 +65,10 @@ const RanguSwatchPicker = React.forwardRef<
 					key={color.toString()}
 					color={color}
 					className={cn(
-						"size-4 shrink-0 rounded-small border-0 outline-none ring-0",
-						"data-[pressed=true]:scale-90",
-						"focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent",
-						"transition-transform duration-300 ease-in-out",
+						"rng-size-4 rng-shrink-0 rng-rounded-small rng-border-0 rng-outline-none rng-ring-0",
+						"data-[pressed=true]:rng-scale-90",
+						"focus-visible:rng-outline-2 focus-visible:rng-outline-offset-1 focus-visible:rng-outline-accent",
+						"rng-transition-transform rng-duration-300 rng-ease-in-out",
 					)}
 					style={{
 						boxShadow: "rgba(255, 255, 255, 0.15) 0px 0px 0px 1px inset",

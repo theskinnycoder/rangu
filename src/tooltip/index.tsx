@@ -1,3 +1,4 @@
+import { ICONS } from "@/icons";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
@@ -19,22 +20,19 @@ const RanguTooltip = React.forwardRef<HTMLDivElement, RanguTooltipProps>(
 				{...rest}
 				ref={forwardedRef}
 				className={cn(
-					"rounded-small bg-dropdown-bg text-text max-w-40 text-[11px] tracking-tight outline-none forced-color-adjust-none px-2.5 py-1 shadow-sm z-50 shadow-black opacity-100 bg-opacity-100",
-					"ring-[0.5px] ring-border mt-0.5",
+					"rng-rounded-small rng-bg-dropdown-bg rng-text-text rng-max-w-40 rng-text-[11px] rng-tracking-tight rng-outline-none rng-forced-color-adjust-none rng-px-2.5 rng-py-1 rng-shadow-sm rng-z-50 rng-shadow-black rng-opacity-100 rng-bg-opacity-100",
+					"rng-ring-[0.5px] rng-ring-border rng-mt-0.5",
+					"rng-will-change-contents",
 					className,
 				)}
 				placement="bottom"
 			>
+				{/* Tooltip Arrow */}
 				<OverlayArrow>
-					<svg
-						width={8}
-						height={8}
-						viewBox="0 0 8 8"
-						className="fill-dropdown-bg rotate-180 transform"
-					>
-						<path d="M0 0 L4 4 L8 0" />
-					</svg>
+					<ICONS.tooltipArrow />
 				</OverlayArrow>
+
+				{/* Tooltip Content */}
 				{children}
 			</Tooltip>
 		);

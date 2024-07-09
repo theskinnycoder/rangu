@@ -8,10 +8,10 @@ import { RanguSwatchPicker } from "@/swatch-picker";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
-	ColorPicker,
-	parseColor,
 	type Color,
+	ColorPicker,
 	type ColorPickerProps,
+	parseColor,
 } from "react-aria-components";
 
 type ColorCallbackValues = {
@@ -98,6 +98,7 @@ type ColorCallbackValues = {
 
 interface RanguColorPickerProps extends Pick<ColorPickerProps, "children"> {
 	// omit the `Color` based state and setter and add `string` based ones
+
 	/**
 	 * The color value in any format.
 	 * @example "#ff0000", "rgb(255, 0, 0)", "hsl(0, 100%, 50%)"
@@ -168,7 +169,7 @@ const RanguColorPicker = (props: RanguColorPickerProps) => {
 	return (
 		<div
 			className={cn(
-				"bg-bg flex flex-col items-center border border-dropdown-bg rounded-small w-fit",
+				"rng-bg-bg rng-flex rng-flex-col rng-items-center rng-border rng-border-dropdown-bg rng-rounded-small rng-w-fit",
 				className,
 			)}
 		>
@@ -184,6 +185,7 @@ const RanguColorPicker = (props: RanguColorPickerProps) => {
 };
 
 RanguColorPicker.displayName = "Rangu.ColorPicker";
+
 RanguColorPicker.AlphaSlider = RanguAlphaSlider;
 RanguColorPicker.HueSlider = RanguHueSlider;
 RanguColorPicker.CurrentColor = RanguCurrentColor;
