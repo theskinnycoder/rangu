@@ -1,13 +1,16 @@
-name: QA
+name: CI
 
 on:
   pull_request:
     branches:
       - canary
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
 jobs:
   build:
-    name: Setup, Install & Build
+    name: 🚀 Build, Test, Lint, & Typecheck
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout Repo
