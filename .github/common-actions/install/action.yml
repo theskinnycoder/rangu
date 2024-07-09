@@ -4,24 +4,39 @@ description: "Sets up Node.js, pnpm and runs pnpm install"
 runs:
   using: composite
   steps:
-    - name: Setup pnpm
-      uses: pnpm/action-setup@v4
-      with:
-        version: 9.5.0
-
-    - name: Setup Node.js v20
+    - name: 🟢 Setup Node.js v20
       uses: actions/setup-node@v4
       with:
         node-version-file: ".nvmrc"
         registry-url: "https://registry.npmjs.org"
-        cache: "pnpm"
 
-    - name: Setup Git User
+    - name: 🥡 Setup pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 9.5.0
+        run_install: false
+
+    - name: 🎈 Get pnpm store directory
+      shell: bash
+      id: get-pnpm-cache-dir
+      run: |
+        echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+    - name: 🔆 Cache pnpm modules
+      uses: actions/cache@v3
+      id: pnpm-cache
+      with:
+        path: ${{ steps.get-pnpm-cache-dir.outputs.pnpm_cache_dir }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+
+    - name: 🌲 Setup Git User
       shell: bash
       run: |
         git config --global user.email "18131a0505@gvpce.ac.in"
         git config --global user.name "theskinnycoder"
 
-    - name: Install dependencies
+    - name: 🧩 Install dependencies
       shell: bash
       run: pnpm install --frozen-lockfile

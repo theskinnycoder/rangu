@@ -13,19 +13,19 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: ⬇️ Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
+      - name: 🧩 Install Dependencies
         uses: ./.github/common-actions/install
 
-      - name: Build Package
+      - name: 🏗️ Build Package
         run: pnpm build
 
-      - name: Run Tests
+      - name: 🧪 Run Tests
         run: pnpm test
 
-      - name: Creating .npmrc
+      - name: ✏️ Creating .npmrc
         run: |
           cat << EOF > "$HOME/.npmrc"
             //registry.npmjs.org/:_authToken=$NPM_TOKEN
@@ -33,7 +33,7 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Create Release Pull Request or Publish to NPM
+      - name: 📣 Create Release Pull Request or Publish to NPM
         id: changesets
         uses: changesets/action@v1
         with:
@@ -46,7 +46,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Sync files from canary to main branch if a publish happens
+      - name: ♻️ Sync files from canary to main branch if a publish happens
         if: steps.changesets.outputs.published == 'true'
         run: |
           curl -X POST \
@@ -55,7 +55,7 @@ jobs:
             https://api.github.com/repos/owner/repo/dispatches \
             -d '{"event_type":"sync-canary-to-main"}'
 
-      - name: Create Canary Release
+      - name: 📣 Create Canary Release
         if: steps.changesets.outputs.published != 'true'
         run: |
           git checkout canary

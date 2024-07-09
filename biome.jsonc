@@ -181,5 +181,20 @@
 				}
 			}
 		}
-	]
+	],
+	"files": {
+		"ignoreUnknown": true,
+		"ignore": [
+			"dist",
+			"node_modules",
+			"storybook-static",
+			"*.css",
+			"package.json",
+			"biome.jsonc",
+			".vscode",
+			".changeset",
+			".storybook"
+		],
+		"include": ["src/"]
+	}
 }

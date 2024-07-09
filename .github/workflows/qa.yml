@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Setup, Install & Build
+    name: 🏗️ Setup, Install & Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -15,45 +15,60 @@ jobs:
 
       - name: Install Dependencies
         uses: ./.github/common-actions/install
+
+      - name: Upload Dependencies
+        uses: actions/upload-artifact@v2
+        with:
+          name: node-modules
+          path: node_modules/
 
       - name: Build Package
         run: pnpm build
 
   tests:
-    name: Tests
+    name: 🧪 Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        uses: ./.github/common-actions/install
+      - name: Download Dependencies
+        uses: actions/download-artifact@v2
+        with:
+          name: node-modules
+          path: node_modules/
 
       - name: Run Tests
         run: pnpm test
 
   lint_format_checks:
-    name: Biome Linting & Formatting
+    name: 🐞 Biome Linting & Formatting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        uses: ./.github/common-actions/install
+      - name: Download Dependencies
+        uses: actions/download-artifact@v2
+        with:
+          name: node-modules
+          path: node_modules/
 
       - name: Run Biome Linting
         run: pnpm check
 
   types:
-    name: TypeScript
+    name: ✅ TypeScript
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        uses: ./.github/common-actions/install
+      - name: Download Dependencies
+        uses: actions/download-artifact@v2
+        with:
+          name: node-modules
+          path: node_modules/
 
       - name: Run typecheck
         run: pnpm typecheck
