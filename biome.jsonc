@@ -19,9 +19,12 @@
 			"**/node_modules",
 			"**/storybook-static",
 			"**/*.css",
-			"package.json"
-		],
-		"include": ["src"]
+			"package.json",
+			"biome.jsonc",
+			".vscode",
+			".changeset",
+			".storybook"
+		]
 	},
 	"organizeImports": { "enabled": true, "include": ["**/*.{ts,tsx,js,jsx}"] },
 	"css": {
@@ -111,9 +114,12 @@
 			"**/node_modules",
 			"**/storybook-static",
 			"**/*.css",
-			"package.json"
-		],
-		"include": ["src"]
+			"package.json",
+			"biome.jsonc",
+			".vscode",
+			".changeset",
+			".storybook"
+		]
 	},
 	"javascript": {
 		"formatter": {
