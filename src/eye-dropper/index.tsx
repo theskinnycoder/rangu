@@ -1,12 +1,12 @@
+import { ICONS } from "@/icons";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
 	Button,
+	type ButtonProps,
 	ColorPickerStateContext,
 	parseColor,
-	type ButtonProps,
 } from "react-aria-components";
-import { ICONS } from "@/icons";
 
 interface RanguEyeDropperProps extends ButtonProps {}
 

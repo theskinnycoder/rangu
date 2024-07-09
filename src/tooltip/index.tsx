@@ -1,3 +1,4 @@
+import { ICONS } from "@/icons";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
@@ -5,7 +6,6 @@ import {
 	Tooltip,
 	type TooltipProps,
 } from "react-aria-components";
-import { ICONS } from "@/icons";
 
 interface RanguTooltipProps extends Omit<TooltipProps, "children"> {
 	children: React.ReactNode;

@@ -1,15 +1,15 @@
+import { ICONS } from "@/icons";
 import { cn } from "@/utils";
 import {
 	Button,
 	ListBox,
 	ListBoxItem,
+	type ListBoxItemProps,
 	Popover,
 	Select,
-	SelectValue,
-	type ListBoxItemProps,
 	type SelectProps,
+	SelectValue,
 } from "react-aria-components";
-import { ICONS } from "@/icons";
 
 interface RanguSelectProps<T extends object>
 	extends Omit<SelectProps<T>, "children"> {

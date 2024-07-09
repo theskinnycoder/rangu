@@ -2,9 +2,9 @@ import { cn } from "@/utils";
 import * as React from "react";
 import {
 	ColorSlider,
+	type ColorSliderProps,
 	ColorThumb,
 	SliderTrack,
-	type ColorSliderProps,
 } from "react-aria-components";
 
 interface RanguHueSliderProps

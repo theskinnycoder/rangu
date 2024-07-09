@@ -8,10 +8,10 @@ import { RanguSwatchPicker } from "@/swatch-picker";
 import { cn } from "@/utils";
 import * as React from "react";
 import {
-	ColorPicker,
-	parseColor,
 	type Color,
+	ColorPicker,
 	type ColorPickerProps,
+	parseColor,
 } from "react-aria-components";
 
 type ColorCallbackValues = {

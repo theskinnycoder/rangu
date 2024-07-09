@@ -4,10 +4,10 @@ import { cn } from "@/utils";
 import * as React from "react";
 import {
 	ColorField,
-	Input,
-	TooltipTrigger,
 	type ColorFieldProps,
 	type ColorFormat,
+	Input,
+	TooltipTrigger,
 } from "react-aria-components";
 
 interface RanguColorFieldProps extends ColorFieldProps {
