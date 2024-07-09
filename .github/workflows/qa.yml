@@ -7,68 +7,57 @@ on:
 
 jobs:
   build:
-    name: 🏗️ Setup, Install & Build
+    name: Setup, Install & Build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: ⬇️ Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Install Dependencies
-        uses: ./.github/common-actions/install
-
-      - name: Upload Dependencies
-        uses: actions/upload-artifact@v2
+      - name: 🟢 Setup Node.js v20
+        uses: actions/setup-node@v4
         with:
-          name: node-modules
-          path: node_modules/
+          node-version-file: ".nvmrc"
+          registry-url: "https://registry.npmjs.org"
 
-      - name: Build Package
+      - name: 🥡 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.5.0
+          run_install: false
+
+      - name: 🎈 Get pnpm store directory
+        shell: bash
+        id: get-pnpm-cache-dir
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - name: 🔆 Cache pnpm modules
+        uses: actions/cache@v3
+        id: pnpm-cache
+        with:
+          path: ${{ steps.get-pnpm-cache-dir.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: 🌲 Setup Git User
+        shell: bash
+        run: |
+          git config --global user.email "18131a0505@gvpce.ac.in"
+          git config --global user.name "theskinnycoder"
+
+      - name: 🧩 Install dependencies
+        shell: bash
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build Package
         run: pnpm build
 
-  tests:
-    name: 🧪 Tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Download Dependencies
-        uses: actions/download-artifact@v2
-        with:
-          name: node-modules
-          path: node_modules/
-
-      - name: Run Tests
+      - name: 🧪 Run Tests
         run: pnpm test
 
-  lint_format_checks:
-    name: 🐞 Biome Linting & Formatting
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Download Dependencies
-        uses: actions/download-artifact@v2
-        with:
-          name: node-modules
-          path: node_modules/
-
-      - name: Run Biome Linting
+      - name: 🐞 Biome Linting & Formatting
         run: pnpm check
 
-  types:
-    name: ✅ TypeScript
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
-
-      - name: Download Dependencies
-        uses: actions/download-artifact@v2
-        with:
-          name: node-modules
-          path: node_modules/
-
-      - name: Run typecheck
+      - name: ✅ Typescript Typecheck
         run: pnpm typecheck

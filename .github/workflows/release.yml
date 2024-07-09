@@ -8,16 +8,56 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   release:
-    name: Release
+    name: 🚀 Release
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout Repo
         uses: actions/checkout@v4
 
-      - name: 🧩 Install Dependencies
-        uses: ./.github/common-actions/install
+      - name: 🟢 Setup Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: 🥡 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.5.0
+          run_install: false
+
+      - name: 🎈 Get pnpm store directory
+        shell: bash
+        id: get-pnpm-cache-dir
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - name: 🔆 Cache pnpm modules
+        uses: actions/cache@v3
+        id: pnpm-cache
+        with:
+          path: ${{ steps.get-pnpm-cache-dir.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: 🌲 Setup Git User
+        shell: bash
+        run: |
+          git config --global user.email "18131a0505@gvpce.ac.in"
+          git config --global user.name "theskinnycoder"
+
+      - name: 🧩 Install dependencies
+        shell: bash
+        run: pnpm install --frozen-lockfile
 
       - name: 🏗️ Build Package
         run: pnpm build
@@ -38,13 +78,14 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm release
-          title: "ci(changesets): :package: version packages"
-          commit: "ci(changesets): version packages"
+          version: pnpm version
+          title: "chore(release): version packages 🦋"
+          commit: "chore(release): version packages 🦋 [skip ci]"
           setupGitUser: false
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
 
       - name: ♻️ Sync files from canary to main branch if a publish happens
         if: steps.changesets.outputs.published == 'true'
@@ -62,5 +103,6 @@ jobs:
           pnpm version:canary
           pnpm release:canary
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
