@@ -24,6 +24,8 @@ const config = {
 			}
     },
 	},
+	prefix: "rng-",
+	important: false,
 	plugins: [],
 } satisfies Config;
 

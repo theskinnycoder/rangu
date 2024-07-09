@@ -168,7 +168,7 @@ const RanguColorPicker = (props: RanguColorPickerProps) => {
 	return (
 		<div
 			className={cn(
-				"bg-bg flex flex-col items-center border border-dropdown-bg rounded-small w-fit",
+				"rng-bg-bg rng-flex rng-flex-col rng-items-center rng-border rng-border-dropdown-bg rng-rounded-small rng-w-fit",
 				className,
 			)}
 		>

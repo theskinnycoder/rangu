@@ -8,10 +8,10 @@
 		"access": "public"
 	},
 	"engines": {
-		"pnpm": ">=8",
+		"pnpm": ">=9",
 		"node": ">=20"
 	},
-	"packageManager": "pnpm@8.12.1",
+	"packageManager": "pnpm@9.3.0",
 	"author": {
 		"name": "Rahul SriRam",
 		"email": "hi@rahulsriram.dev",
