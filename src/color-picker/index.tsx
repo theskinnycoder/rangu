@@ -98,6 +98,7 @@ type ColorCallbackValues = {
 
 interface RanguColorPickerProps extends Pick<ColorPickerProps, "children"> {
 	// omit the `Color` based state and setter and add `string` based ones
+
 	/**
 	 * The color value in any format.
 	 * @example "#ff0000", "rgb(255, 0, 0)", "hsl(0, 100%, 50%)"
@@ -184,6 +185,7 @@ const RanguColorPicker = (props: RanguColorPickerProps) => {
 };
 
 RanguColorPicker.displayName = "Rangu.ColorPicker";
+
 RanguColorPicker.AlphaSlider = RanguAlphaSlider;
 RanguColorPicker.HueSlider = RanguHueSlider;
 RanguColorPicker.CurrentColor = RanguCurrentColor;

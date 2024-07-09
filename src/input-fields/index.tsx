@@ -109,7 +109,7 @@ interface RanguSelectedInputFieldsProps {
 	className?: string;
 
 	/**
-	 * Whether to show labels for the input fields.
+	 * Whether to show tooltips for the input fields.
 	 * @default true
 	 */
 	withTooltips?: boolean;
@@ -430,7 +430,7 @@ interface RanguInputFieldsProps {
 	className?: string;
 
 	/**
-	 * Whether to show labels for the input fields.
+	 * Whether to show tooltips for the input fields.
 	 * @default true
 	 */
 	withTooltips?: boolean;

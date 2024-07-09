@@ -42,6 +42,7 @@ const RanguHueSlider = React.forwardRef<HTMLDivElement, RanguHueSliderProps>(
 							"rng-duration-300 rng-ease-in-out",
 							"rng-border-2 rng-border-text",
 							"data-[focus-visible=true]:rng-size-3.5 data-[focus-visible=true]:rng-ring-accent data-[focus-visible=true]:rng-ring-offset-1 data-[focus-visible=true]:rng-ring-1 data-[focus-visible=true]:rng-ring-offset-text",
+							"rng-will-change-transform",
 						)}
 						style={{
 							transitionProperty: "width, height",

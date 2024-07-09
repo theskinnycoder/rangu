@@ -21,7 +21,9 @@ const RanguEyeDropper = (props: RanguEyeDropperProps) => {
 	}
 
 	if (typeof EyeDropper === "undefined") {
-		throw new Error("EyeDropper is not supported in your browser.");
+		console.warn("EyeDropper is not supported in your browser.");
+
+		return null;
 	}
 
 	return (
