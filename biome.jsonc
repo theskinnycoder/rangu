@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.8.0/schema.json",
+	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
@@ -14,7 +14,13 @@
 		"lineEnding": "lf",
 		"lineWidth": 80,
 		"attributePosition": "multiline",
-		"ignore": ["dist", "**/node_modules", "**/storybook-static", "**/*.css"],
+		"ignore": [
+			"dist",
+			"**/node_modules",
+			"**/storybook-static",
+			"**/*.css",
+			"package.json"
+		],
 		"include": ["src"]
 	},
 	"organizeImports": { "enabled": true, "include": ["**/*.{ts,tsx,js,jsx}"] },
@@ -100,7 +106,13 @@
 				"useValidTypeof": "error"
 			}
 		},
-		"ignore": ["dist", "**/node_modules", "**/storybook-static", "**/*.css"],
+		"ignore": [
+			"dist",
+			"**/node_modules",
+			"**/storybook-static",
+			"**/*.css",
+			"package.json"
+		],
 		"include": ["src"]
 	},
 	"javascript": {
