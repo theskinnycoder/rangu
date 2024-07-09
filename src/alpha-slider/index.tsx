@@ -2,9 +2,9 @@ import { cn } from "@/utils";
 import * as React from "react";
 import {
 	ColorSlider,
+	type ColorSliderProps,
 	ColorThumb,
 	SliderTrack,
-	type ColorSliderProps,
 } from "react-aria-components";
 
 interface RanguAlphaSliderProps
@@ -30,12 +30,12 @@ const RanguAlphaSlider = React.forwardRef<
 			{...rest}
 			channel="alpha"
 			orientation="horizontal"
-			className={cn("min-w-[10.5rem] cursor-ew-resize", className)}
+			className={cn("rng-min-w-[10.5rem] rng-cursor-ew-resize", className)}
 			ref={forwardedRef}
 		>
 			{/* Track */}
 			<SliderTrack
-				className={cn("group h-3 rounded-medium shadow-alpha")}
+				className={cn("rng-group rng-h-3 rng-rounded-medium rng-shadow-alpha")}
 				style={({ defaultStyle }) => ({
 					background: `${defaultStyle.background},
             repeating-conic-gradient(#CCC 0% 25%, white 0% 50%) 50% / 12px 12px`,
@@ -44,11 +44,12 @@ const RanguAlphaSlider = React.forwardRef<
 				{/* Thumb */}
 				<ColorThumb
 					className={cn(
-						"top-1/2 size-3 rounded-full bg-transparent shadow-thumb",
-						"data-[dragging=true]:size-3.5",
-						"duration-300 ease-in-out",
-						"border-2 border-text",
-						"data-[focus-visible=true]:size-3.5 data-[focus-visible=true]:ring-accent data-[focus-visible=true]:ring-offset-1 data-[focus-visible=true]:ring-1 data-[focus-visible=true]:ring-offset-text",
+						"rng-top-1/2 rng-size-3 rng-rounded-full rng-bg-transparent rng-shadow-thumb",
+						"data-[dragging=true]:rng-size-3.5",
+						"rng-duration-300 rng-ease-in-out",
+						"rng-border-2 rng-border-text",
+						"data-[focus-visible=true]:rng-size-3.5 data-[focus-visible=true]:rng-ring-accent data-[focus-visible=true]:rng-ring-offset-1 data-[focus-visible=true]:rng-ring-1 data-[focus-visible=true]:rng-ring-offset-text",
+						"rng-will-change-transform",
 					)}
 					style={{
 						transitionProperty: "width, height",

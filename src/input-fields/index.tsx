@@ -4,10 +4,10 @@ import { cn } from "@/utils";
 import * as React from "react";
 import {
 	ColorField,
-	Input,
-	TooltipTrigger,
 	type ColorFieldProps,
 	type ColorFormat,
+	Input,
+	TooltipTrigger,
 } from "react-aria-components";
 
 interface RanguColorFieldProps extends ColorFieldProps {
@@ -25,18 +25,18 @@ const RanguColorField = React.forwardRef<HTMLDivElement, RanguColorFieldProps>(
 					channel={channel}
 					ref={forwardedRef}
 					isWheelDisabled={false}
-					className={cn("flex flex-col gap-0.5 grow-0")}
+					className={cn("rng-flex rng-flex-col rng-gap-0.5 rng-grow-0")}
 				>
 					<Input
 						className={cn(
-							"m-0 rounded-small border border-transparent group-hover/all:border-border bg-bg px-1 py-px text-[11px] font-medium text-text placeholder:text-text/60 h-7 cursor-text",
-							"outline-none",
-							"focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-0",
-							"transition-all duration-200 ease-in-out",
-							"group-focus-within/all:ring-2 group-focus-within/all:ring-accent rounded-small w-20",
+							"rng-m-0 rng-rounded-small rng-border rng-border-transparent group-hover:rng-border-border rng-bg-bg rng-px-1 rng-py-px rng-text-[11px] rng-font-medium rng-text-text placeholder:rng-text-text/60 rng-h-7 rng-cursor-text",
+							"rng-outline-none",
+							"focus-visible:rng-ring-2 focus-visible:rng-ring-accent focus-visible:rng-ring-offset-0",
+							"rng-transition-all rng-duration-200 rng-ease-in-out",
+							"group-focus-within:rng-ring-2 group-focus-within:rng-ring-accent rng-rounded-small rng-w-20",
 							{
-								"w-11": channel === "alpha",
-								"w-10": [
+								"!rng-w-11": channel === "alpha",
+								"!rng-w-10": [
 									"hue",
 									"saturation",
 									"lightness",
@@ -109,7 +109,7 @@ interface RanguSelectedInputFieldsProps {
 	className?: string;
 
 	/**
-	 * Whether to show labels for the input fields.
+	 * Whether to show tooltips for the input fields.
 	 * @default true
 	 */
 	withTooltips?: boolean;
@@ -123,12 +123,12 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 	switch (colorFormat) {
 		case "rgb":
 			return (
-				<div className="flex items-center gap-0 group/all">
+				<div className="rng-flex rng-items-center rng-gap-0 rng-group">
 					<RanguColorField
 						{...rest}
 						tooltip={withTooltips ? "Red" : undefined}
 						className={cn(
-							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="rgb"
@@ -139,7 +139,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Green" : undefined}
 						className={cn(
-							"rounded-r-none rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-rounded-l-none focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="rgb"
@@ -150,7 +150,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Blue" : undefined}
 						className={cn(
-							"rounded-l-none border-l-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-l-none rng-border-l-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="rgb"
@@ -161,12 +161,12 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 
 		case "rgba":
 			return (
-				<div className="flex items-center gap-0 group/all">
+				<div className="rng-flex rng-items-center rng-gap-0 rng-group">
 					<RanguColorField
 						{...rest}
 						tooltip={withTooltips ? "Red" : undefined}
 						className={cn(
-							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="rgb"
@@ -177,7 +177,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Green" : undefined}
 						className={cn(
-							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-rounded-l-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="rgb"
@@ -188,7 +188,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Blue" : undefined}
 						className={cn(
-							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-rounded-l-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="rgb"
@@ -199,7 +199,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Opacity" : undefined}
 						className={cn(
-							"rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-l-none focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="rgb"
@@ -210,12 +210,12 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 
 		case "hsb":
 			return (
-				<div className="flex items-center gap-0 group/all">
+				<div className="rng-flex rng-items-center rng-gap-0 rng-group">
 					<RanguColorField
 						{...rest}
 						tooltip={withTooltips ? "Hue" : undefined}
 						className={cn(
-							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsb"
@@ -226,7 +226,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Saturation" : undefined}
 						className={cn(
-							"rounded-r-none rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-rounded-l-none focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsb"
@@ -237,7 +237,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Brightness" : undefined}
 						className={cn(
-							"rounded-l-none border-l-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-l-none rng-border-l-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsb"
@@ -248,12 +248,12 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 
 		case "hsba":
 			return (
-				<div className="flex items-center gap-0 group/all">
+				<div className="rng-flex rng-items-center rng-gap-0 rng-group">
 					<RanguColorField
 						{...rest}
 						tooltip={withTooltips ? "Hue" : undefined}
 						className={cn(
-							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsb"
@@ -264,7 +264,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Saturation" : undefined}
 						className={cn(
-							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-rounded-l-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsb"
@@ -275,7 +275,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Brightness" : undefined}
 						className={cn(
-							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-rounded-l-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsb"
@@ -286,7 +286,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Opacity" : undefined}
 						className={cn(
-							"rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-l-none focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsb"
@@ -297,12 +297,12 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 
 		case "hsl":
 			return (
-				<div className="flex items-center gap-0 group/all">
+				<div className="rng-flex rng-items-center rng-gap-0 rng-group">
 					<RanguColorField
 						{...rest}
 						tooltip={withTooltips ? "Hue" : undefined}
 						className={cn(
-							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsl"
@@ -313,7 +313,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Saturation" : undefined}
 						className={cn(
-							"rounded-r-none rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-rounded-l-none focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsl"
@@ -324,7 +324,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Lightness" : undefined}
 						className={cn(
-							"rounded-l-none border-l-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-l-none rng-border-l-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsl"
@@ -335,12 +335,12 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 
 		case "hsla":
 			return (
-				<div className="flex items-center gap-0 group/all">
+				<div className="rng-flex rng-items-center rng-gap-0 rng-group">
 					<RanguColorField
 						{...rest}
 						tooltip={withTooltips ? "Hue" : undefined}
 						className={cn(
-							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsl"
@@ -351,7 +351,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Saturation" : undefined}
 						className={cn(
-							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-rounded-l-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsl"
@@ -362,7 +362,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Lightness" : undefined}
 						className={cn(
-							"rounded-r-none rounded-l-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-rounded-l-none rng-border-r-0 focus-visible:eng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsl"
@@ -373,7 +373,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Opacity" : undefined}
 						className={cn(
-							"rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-l-none focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="hsl"
@@ -384,12 +384,12 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 
 		case "hex":
 			return (
-				<div className="flex items-center group/all gap-0">
+				<div className="rng-flex rng-items-center rng-gap-0 rng-group">
 					<RanguColorField
 						{...rest}
 						tooltip={withTooltips ? "Hex" : undefined}
 						className={cn(
-							"hover:border-border focus-visible:border-transparent",
+							"hover:rng-border-border focus-visible:rng-border-transparent",
 							className,
 						)}
 					/>
@@ -399,12 +399,12 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 		case "hexa":
 		default:
 			return (
-				<div className="flex items-center gap-0 group/all">
+				<div className="rng-flex rng-items-center rng-gap-0 rng-group">
 					<RanguColorField
 						{...rest}
 						tooltip={withTooltips ? "Hex" : undefined}
 						className={cn(
-							"rounded-r-none border-r-0 focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-r-none rng-border-r-0 focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 					/>
@@ -413,7 +413,7 @@ const RanguSelectedInputFields = (props: RanguSelectedInputFieldsProps) => {
 						{...rest}
 						tooltip={withTooltips ? "Opacity" : undefined}
 						className={cn(
-							"rounded-l-none focus-visible:ring-0 group-focus-within/all:group-hover/all:border-transparent",
+							"rng-rounded-l-none focus-visible:rng-ring-0 group-focus-within:group-hover:rng-border-transparent",
 							className,
 						)}
 						colorSpace="rgb"
@@ -430,7 +430,7 @@ interface RanguInputFieldsProps {
 	className?: string;
 
 	/**
-	 * Whether to show labels for the input fields.
+	 * Whether to show tooltips for the input fields.
 	 * @default true
 	 */
 	withTooltips?: boolean;
@@ -484,9 +484,9 @@ const RanguInputFields = (props: RanguInputFieldsProps) => {
 			}}
 		>
 			<div
-				className={cn("flex items-center gap-0.5", {
-					"justify-between": moreThanOneFormat,
-					"justify-center": !moreThanOneFormat,
+				className={cn("rng-flex rng-items-center rng-gap-1", {
+					"rng-justify-between": moreThanOneFormat,
+					"rng-justify-center": !moreThanOneFormat,
 				})}
 			>
 				{moreThanOneFormat && <RanguColorFormatSwitcher />}

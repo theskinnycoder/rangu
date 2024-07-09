@@ -1,0 +1,107 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - canary
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: 🚀 Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          registry-url: "https://registry.npmjs.org"
+
+      - name: 🥡 Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9.5.0
+          run_install: false
+
+      - name: 🎈 Get pnpm store directory
+        shell: bash
+        id: get-pnpm-cache-dir
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+
+      - name: 🔆 Cache pnpm modules
+        uses: actions/cache@v3
+        id: pnpm-cache
+        with:
+          path: ${{ steps.get-pnpm-cache-dir.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: 🌲 Setup Git User
+        shell: bash
+        run: |
+          git config --global user.email "18131a0505@gvpce.ac.in"
+          git config --global user.name "theskinnycoder"
+
+      - name: 🧩 Install dependencies
+        shell: bash
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build Package
+        run: pnpm build
+
+      - name: 🧪 Run Tests
+        run: pnpm test
+
+      - name: 🐞 Biome Linting & Formatting
+        run: pnpm check
+
+      - name: ✅ Typescript Typecheck
+        run: pnpm typecheck
+
+      - name: ✏️ Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 📣 Create Release Pull Request or Publish to NPM
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          publish: pnpm release
+          title: "ci(changesets): :package: version packages"
+          commit: "ci(changesets): version packages"
+          setupGitUser: false
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: ♻️ Sync files from canary to main branch if a publish happens
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            https://api.github.com/repos/owner/repo/dispatches \
+            -d '{"event_type":"sync-canary-to-main"}'
+
+      - name: 📣 Create Canary Release
+        if: steps.changesets.outputs.published != 'true'
+        run: |
+          git checkout canary
+          pnpm version:canary
+          pnpm release:canary
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

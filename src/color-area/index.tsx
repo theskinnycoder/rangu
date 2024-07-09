@@ -31,17 +31,18 @@ const RanguColorArea = React.forwardRef<HTMLDivElement, RanguColorAreaProps>(
 				yChannel="brightness"
 				ref={forwardedRed}
 				className={cn(
-					"relative min-w-60 min-h-60 size-full aspect-square shrink-0 rounded-none",
+					"rng-relative rng-min-w-60 rng-min-h-60 rng-size-full rng-aspect-square rng-shrink-0 rng-rounded-none",
 					className,
 				)}
 			>
 				<ColorThumb
 					className={cn(
-						"size-3 rounded-full bg-transparent shadow-thumb",
-						"data-[dragging=true]:size-3.5",
-						"duration-300 ease-in-out",
-						"border-2 border-text",
-						"data-[focus-visible=true]:size-3.5 data-[focus-visible=true]:ring-accent data-[focus-visible=true]:ring-offset-1 data-[focus-visible=true]:ring-1 data-[focus-visible=true]:ring-offset-text",
+						"rng-size-3 rng-rounded-full rng-bg-transparent rng-shadow-thumb",
+						"data-[dragging=true]:rng-size-3.5",
+						"rng-duration-300 rng-ease-in-out",
+						"rng-border-2 rng-border-text",
+						"data-[focus-visible=true]:rng-size-3.5 data-[focus-visible=true]:rng-ring-accent data-[focus-visible=true]:rng-ring-offset-1 data-[focus-visible=true]:rng-ring-1 data-[focus-visible=true]:rng-ring-offset-text",
+						"rng-will-change-transform",
 					)}
 					style={{
 						transitionProperty: "width, height",

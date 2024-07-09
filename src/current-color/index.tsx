@@ -14,8 +14,8 @@ const RanguCurrentColor = React.forwardRef<
 			{...rest}
 			ref={forwardedRef}
 			className={cn(
-				"size-12 rounded-small shadow-alpha",
-				"transition-colors duration-300 ease-in-out",
+				"rng-size-12 rng-rounded-small rng-shadow-alpha",
+				"rng-transition-colors rng-duration-300 rng-ease-in-out",
 				className,
 			)}
 		/>

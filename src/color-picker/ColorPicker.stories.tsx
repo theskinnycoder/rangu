@@ -13,19 +13,20 @@ const ExampleColorPicker = ({ color }: { color: string }) => {
 		>
 			<Rangu.ColorArea />
 
-			<div className="flex items-center justify-between gap-2 mt-3 pl-3 pr-4 w-full">
+			<div className="rng-flex rng-items-center rng-justify-between rng-gap-2 rng-mt-3 rng-pl-3 rng-pr-4 rng-w-full">
 				<Rangu.EyeDropper />
-				<div className="flex flex-col gap-3">
+				<div className="rng-flex rng-flex-col rng-gap-3">
 					<Rangu.HueSlider />
 					<Rangu.AlphaSlider />
 				</div>
 			</div>
 
-			<div className="px-2 mt-3 w-full">
+			<div className="rng-px-2 rng-mt-3 rng-w-full">
 				<Rangu.InputFields
 					withTooltips
 					supportedFormats={[
 						"hex",
+						"hexa",
 						"rgb",
 						"rgba",
 						"hsl",
@@ -37,9 +38,9 @@ const ExampleColorPicker = ({ color }: { color: string }) => {
 				/>
 			</div>
 
-			<hr className="w-full border-t border-border mt-3" />
+			<hr className="rng-w-full rng-border-t rng-border-border rng-mt-3" />
 
-			<div className="px-3 py-2">
+			<div className="rng-px-3 rng-py-2">
 				<Rangu.SwatchPicker
 					colors={[
 						"#A00",
