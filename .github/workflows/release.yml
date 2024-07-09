@@ -8,7 +8,6 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
 
-
 env:
   NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -80,7 +79,7 @@ jobs:
           publish: pnpm release
           version: pnpm version
           title: "chore(release): version packages 🦋"
-          commit: "chore(release): version packages 🦋 [skip ci]"
+          commit: "chore(release): version packages 🦋"
           setupGitUser: false
         env:
           NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
