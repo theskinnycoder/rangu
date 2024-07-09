@@ -11,7 +11,7 @@
     "pnpm": ">=9",
     "node": ">=20"
   },
-  "packageManager": "pnpm@9.3.0",
+  "packageManager": "pnpm@9.5.0",
   "author": {
     "name": "Rahul SriRam",
     "email": "hi@rahulsriram.dev",
