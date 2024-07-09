@@ -1,5 +1,11 @@
 # rangu
 
+## 1.2.1
+
+### Patch Changes
+
+- [#17](https://github.com/theskinnycoder/rangu/pull/17) [`45967e7`](https://github.com/theskinnycoder/rangu/commit/45967e764d9513d8d161717807c67d4b8c02c25b) Thanks [@theskinnycoder](https://github.com/theskinnycoder)! - Fix dark theme and existing TailwindCSS config conflicts
+
 ## 1.2.0
 
 ### Minor Changes
